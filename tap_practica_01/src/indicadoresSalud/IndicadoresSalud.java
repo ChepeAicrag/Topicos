@@ -1,18 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * GUI CON EVENTS PARA CALCULAR IMC Y EL ICC 
+ * Utilizando FlowLayout
  */
 package indicadoresSalud;
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.*;
 /**
  *
  * @author García García José Ángel
  */
-public class IndicadoresSalud extends JFrame{
+public class IndicadoresSalud extends JFrame implements ActionListener{
    private JButton cIMC; //ACtiva el cálculo del IMC
    private JButton cICC; //ACtiva el cálculo del ICC
    private JButton borrar; //ACtiva el borrado de los datos
@@ -76,13 +77,82 @@ public class IndicadoresSalud extends JFrame{
        add(cICC);
        add(resultadoICC);
        add(borrar);
-       
-       
+       ButtonGroup opcion = new ButtonGroup();
+       opcion.add(hombre);
+       opcion.add(mujer);
+       hombre.setSelected(true);
+       cIMC.addActionListener(this);
+       cICC.addActionListener(this);
+       borrar.addActionListener(this);
        setLayout(new FlowLayout());
        setLocationRelativeTo(null);
        setSize(300,500);
        setDefaultCloseOperation(EXIT_ON_CLOSE);
        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        JButton boton = (JButton) ae.getSource();
+        String resultado = "";
+        String situacion = "";
+        if(boton == cIMC) // Si el boton que produce el evento es cIMC
+        {
+            int edadAños = Integer.parseInt(edad.getText());
+            double mtsCms = Double.parseDouble(estatura.getText())/100;
+            double pesoKgs = Double.parseDouble(peso.getText());
+            if(mtsCms < 1.4 || mtsCms > 1.9 || pesoKgs < 40 || pesoKgs > 150 || edadAños < 20 || edadAños > 63 )
+               JOptionPane.showMessageDialog(this, "Se requieren valores dentro del rango ");
+            else{
+              double vIMC = pesoKgs/ Math.pow(mtsCms,2); 
+              if(vIMC < 18.5)
+                  situacion = "Peso bajo";
+              else if(vIMC > 18.5 && vIMC < 24.9)
+                  situacion = "Peso normal";
+              else if(vIMC > 25 && vIMC < 29.9)
+                  situacion = "Sobre peso";
+              else 
+                  situacion = "Obesidad";
+              resultado  =  String.format("%.2f %s", vIMC,situacion);
+              resultadoIMC.setText(resultado);
+            }
+        }
+        else if(boton == cICC)
+        {
+            double cinturaCms = Double.parseDouble(cintura.getText());
+            double caderaCms = Double.parseDouble(cadera.getText());
+            double vICC = cinturaCms / caderaCms;
+            if (caderaCms < 60 || caderaCms > 150 || cinturaCms < 50 || cinturaCms > 140)
+                JOptionPane.showMessageDialog(this, "Se requieren valores dentro del rango");
+            else{
+                if(hombre.isSelected()){
+                    if(vICC <= 0.95 )
+                        situacion = "Riesgo Cardiovascular Bajo";
+                    else if(vICC > 0.95 && vICC < 1)
+                        situacion = "Riesgo Cardiovascular Medio";
+                    else 
+                        situacion = "Riesgo Cardiovascular Alto";
+                }else{
+                    if(vICC <= 0.80 )
+                        situacion = "Riesgo Cardiovascular Bajo";
+                    else if(vICC > 0.80 && vICC < 0.85)
+                        situacion = "Riesgo Cardiovascular Medio";
+                    else 
+                        situacion = "Riesgo Cardiovascular Alto";
+                }
+              resultado  =  String.format("%.2f %s", vICC,situacion);
+              resultadoICC.setText(resultado);
+            }
+        }else if(boton == borrar){
+            cadera.setText("");
+            cintura.setText("");
+            edad.setText("");
+            peso.setText("");
+            estatura.setText("");
+            resultadoIMC.setText("");
+            resultadoICC.setText("");
+        }
+        
     }
     
 }
