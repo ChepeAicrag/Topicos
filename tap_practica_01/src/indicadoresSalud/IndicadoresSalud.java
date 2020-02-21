@@ -90,7 +90,6 @@ public class IndicadoresSalud extends JFrame implements ActionListener{
        setDefaultCloseOperation(EXIT_ON_CLOSE);
        setVisible(true);
     }
-
     @Override
     public void actionPerformed(ActionEvent ae) {
         JButton boton = (JButton) ae.getSource();
@@ -106,13 +105,13 @@ public class IndicadoresSalud extends JFrame implements ActionListener{
             else{
               double vIMC = pesoKgs/ Math.pow(mtsCms,2); 
               if(vIMC < 18.5)
-                  situacion = "Peso bajo";
+                  situacion = "PESO BAJO";
               else if(vIMC > 18.5 && vIMC < 24.9)
-                  situacion = "Peso normal";
+                  situacion = "PESO NORMAL";
               else if(vIMC > 25 && vIMC < 29.9)
-                  situacion = "Sobre peso";
+                  situacion = "SOBRE PESO";
               else 
-                  situacion = "Obesidad";
+                  situacion = "OBESIDAD";
               resultado  =  String.format("%.2f %s", vIMC,situacion);
               resultadoIMC.setText(resultado);
             }
@@ -127,18 +126,18 @@ public class IndicadoresSalud extends JFrame implements ActionListener{
             else{
                 if(hombre.isSelected()){
                     if(vICC <= 0.95 )
-                        situacion = "Riesgo Cardiovascular Bajo";
+                        situacion = "Riesgo Cardiovascular BAJO";
                     else if(vICC > 0.95 && vICC < 1)
-                        situacion = "Riesgo Cardiovascular Medio";
+                        situacion = "Riesgo Cardiovascular MEDIO";
                     else 
-                        situacion = "Riesgo Cardiovascular Alto";
+                        situacion = "Riesgo Cardiovascular ALTO";
                 }else{
                     if(vICC <= 0.80 )
-                        situacion = "Riesgo Cardiovascular Bajo";
+                        situacion = "Riesgo Cardiovascular BAJO";
                     else if(vICC > 0.80 && vICC < 0.85)
-                        situacion = "Riesgo Cardiovascular Medio";
+                        situacion = "Riesgo Cardiovascular MEDIO";
                     else 
-                        situacion = "Riesgo Cardiovascular Alto";
+                        situacion = "Riesgo Cardiovascular ALTO";
                 }
               resultado  =  String.format("%.2f %s", vICC,situacion);
               resultadoICC.setText(resultado);
@@ -149,8 +148,8 @@ public class IndicadoresSalud extends JFrame implements ActionListener{
             edad.setText("");
             peso.setText("");
             estatura.setText("");
-            resultadoIMC.setText("");
-            resultadoICC.setText("");
+            resultadoIMC.setText("_ _ _ _ _ _ _ _ _ _");
+            resultadoICC.setText("_ _ _ _ _ _ _ _ _ _");
         }
         
     }
