@@ -196,7 +196,7 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 	public JPanel creaPanelTiempos() {
 		JPanel tiemposAlimento = new JPanel();
 		tiemposAlimento.setLayout(new BorderLayout());
-		JLabel indicacion = new JLabel("Seleccion");
+		JLabel indicacion = new JLabel("Selecciona el tiempo donde lo quieres consumir");
 		indicacion.setHorizontalAlignment(JLabel.CENTER);
 		tiemposAlimento.add(indicacion,BorderLayout.NORTH);
 		JPanel eleccion = new JPanel();
@@ -207,7 +207,16 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 		eleccion.setLayout(new GridLayout(0,4));
 		for(int t = 0; t < eleccionTiempo.length-1; t++) { // Para evitar "todos" reducimos en -1
 			eleccionTiempo[t] = new JCheckBox(TIEMPOSDECOMIDA[t]);
-			eleccionTiempo[t].addActionListener(this);
+			eleccionTiempo[t].addActionListener(new ActionListener() { // Clase anonima al elemetno directo
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					boolean	seleccion = true;
+					for(int	t = 0; t < eleccionTiempo.length-1; t++) {
+							seleccion = eleccionTiempo[t].isSelected();
+							eleccionTiempo[eleccionTiempo.length-1].setSelected(seleccion);;				
+						}
+				}
+			});
 			eleccion.add(eleccionTiempo[t]);
 			numAlimTie[t] = 0;
 		}
@@ -216,6 +225,7 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 			eleccion.add(aceptar); // Agregar al final xd
 			tiemposAlimento.add(eleccion,BorderLayout.CENTER);
 			tiemposAlimento.add(creaListas(),BorderLayout.SOUTH);
+//			tiemposAlimento.add(aceptar,BorderLayout.EAST);
 			return	tiemposAlimento;
 		
 	}
@@ -225,16 +235,11 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 		if(prod == verificar) {
 			String mensaje = "La verdura sin restriccion de cantidad\nLa fruta sin restricciones de cantidadcon variedad de colores\nLos creales deben ser suficientes\nLas legumbres deben ser suficientes combinadas con cereales\nProductos de origen animal deben ser consumidos en poca cantidad ";	
 			JOptionPane.showMessageDialog(this, mensaje);
-		}if(prod == eleccionTiempo) {
-			boolean	seleccion = true;				
-			for(int	t=0; t < eleccionTiempo.length; t++) {
-				seleccion = eleccionTiempo[t+1].isSelected() &&	eleccionTiempo[t].isSelected();
-			eleccionTiempo[eleccionTiempo.length-1].setSelected(seleccion);				
-			}
-		}if (prod == aceptar) {
+		}	
+		if (prod == aceptar) {
 			Alimentos aliSel = (Alimentos) alimento.getSelectedItem();
-			for (int t = 0; t <eleccionTiempo.length-1; t++) {
-				if(eleccionTiempo[t].isSelected()){
+			for (int t = 0; t <eleccionTiempo.length-1; t++) { 
+				if(eleccionTiempo[t].isSelected() && !modelosListas[t].contains(aliSel)){
 					modelosListas[t].addElement(aliSel);
 					numAlimTiem[t].setText("Num. Ali.: " + (++numAlimTie[t]));
 					//numAlimTie[aliSel.getTipo()]++; // Esta parte está pendiente
