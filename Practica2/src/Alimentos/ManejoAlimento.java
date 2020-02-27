@@ -1,5 +1,7 @@
 package Alimentos;
-
+/*
+ * @author García García José Ángel
+ */
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -21,17 +23,17 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 	private final Color COLORES[] = {Color.GREEN, Color.YELLOW, Color.ORANGE, Color.WHITE, Color.MAGENTA};
     private final String Tipo_Alimento[] = {"Verduras","Frutas","Cereales","Leguminosas","Origen Animal"};
     private final int KCAL_TIPO_ALIM[] = {25,60,70,120,40};
-    private JSlider racTipoAlim[]; // Fija el numero de racionespor tipo de  alimento
-    private JLabel kCalTipoAlim[]; // Guarda las kilocalorias por tipo de alimento
-    private JPanel pKcalTipoAlim[]; // Paneles para guardar las barras a desplegar
+    private JSlider racTipoAlim[]; 
+    private JLabel kCalTipoAlim[];
+    private JPanel pKcalTipoAlim[];
     private JButton verificar;
-    private JLabel kilocalorias; // Para mostrar el valor de las kilocalorias
+    private JLabel kilocalorias;
     private final String TIEMPOSDECOMIDA[] = {"Desayuno","Alumerzo","Cena"};
     private JCheckBox eleccionTiempo[];
     private DefaultListModel[] modelosListas;
     private JList tiempos[];
     private JComboBox alimento;
-    private JButton aceptar; // para agregar un alimento
+    private JButton aceptar; 
     private JLabel tipoAli;
     JLabel[] numAlimTiem;
     private int[] numAlimTie;
@@ -43,11 +45,13 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
     alimentos = cargarDatos();
     panelPrincipal.addTab("Conociendo alimentos", panelConociendo());
     panelPrincipal.addTab("Eleccion de alimentos", panelAlimentos());
-    //panelPrincipal.addTab("Clasificacion de alimentos",grafico);
     panel.add(panelPrincipal);
     this.setVisible(true);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.pack();
+    this.setResizable(false);
+    this.setSize(new Dimension(600, 330));
+    this.setLocationRelativeTo(null);
     }
 	
 	private Alimentos[] cargarDatos() {
@@ -78,29 +82,27 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 	}
 
 	private JPanel panelConociendo() {
-		JPanel conocer = new JPanel(new BorderLayout()); // Panel general
-		JPanel panelSuperior = new JPanel(new BorderLayout()); // Panel para titulos 
-		JPanel panelCentro = new JPanel(new GridLayout(1, 4,10,0)); // Panel para deslizador y etiqueta con grupo de alimento
+		JPanel conocer = new JPanel(new BorderLayout()); 
+		JPanel panelSuperior = new JPanel(new BorderLayout());  
+		JPanel panelCentro = new JPanel(new GridLayout(1, 4,10,0)); 
 		JPanel panelSur = new JPanel();
-		JPanel panelTitulo = new JPanel(new GridLayout(0,1,0,15)); // Para los enc1 y enc2 
-		JPanel panelEncabezado = new JPanel(new FlowLayout()); // Para el panelTitulo
+		JPanel panelTitulo = new JPanel(new GridLayout(0,1,0,15));
+		JPanel panelEncabezado = new JPanel(new FlowLayout()); 
 		JLabel enc1 = new JLabel("CONOCIMIENTO DE LAS KILOCALORIAS APORTADAS POR RACIONES POR TIPO DE ALIMENTO");
 		JLabel enc2 = new JLabel("Elige el numero de las raciones decada tipo de alimento que consideres que debes consumir");
 		panelTitulo.add(enc1);
 		panelTitulo.add(enc2);
 		panelEncabezado.add(panelTitulo); 
-		panelSuperior.add(panelEncabezado,BorderLayout.CENTER); // Siempre centrado al panel
-		pKcalTipoAlim = new JPanel[Tipo_Alimento.length]; // Atributo
-		JPanel pGpoTipoAlim = new JPanel(new GridLayout()); // Sirve para grupar los JSlider y lasJLabel
+		panelSuperior.add(panelEncabezado,BorderLayout.CENTER); 
+		pKcalTipoAlim = new JPanel[Tipo_Alimento.length]; 
+		JPanel pGpoTipoAlim = new JPanel(new GridLayout()); 
 		racTipoAlim = new JSlider[Tipo_Alimento.length];
 		kCalTipoAlim = new JLabel[Tipo_Alimento.length];
-		/* Funcionando de forma correcta */
 		verificar = new JButton("Verifica proporcion");
 		verificar.addActionListener(this);
 		kilocalorias = new JLabel("Total de kilocalorais : 0");
 		panelSur.add(kilocalorias);
 		panelSur.add(verificar);
-		//panelSur.add(reAlimentacion);
 		for(int ta = 0; ta < Tipo_Alimento.length;ta++) {
 			JPanel pDatos = new JPanel(new BorderLayout());
 			JLabel tit = new JLabel(Tipo_Alimento[ta]);
@@ -116,12 +118,11 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 			racTipoAlim[ta].setValue(1);
 			racTipoAlim[ta].setMajorTickSpacing(2);
 			racTipoAlim[ta].setMinorTickSpacing(1);
+			racTipoAlim[ta].setBackground(Color.red);
 			kCalTipoAlim[ta] = new JLabel(Tipo_Alimento[ta]);
-			kCalTipoAlim[ta].setBackground(Color.red);
 			kCalTipoAlim[ta].setOpaque(true);
 			kCalTipoAlim[ta].setVerticalAlignment(SwingConstants.CENTER);
 			kCalTipoAlim[ta].setHorizontalAlignment(SwingConstants.RIGHT);
-			/* No entiendo como influye esta parte */
 			pKcalTipoAlim[ta].setLayout(new BorderLayout());
 			pKcalTipoAlim[ta].setPreferredSize(new Dimension(10, 10));
 			pKcalTipoAlim[ta].add(racTipoAlim[ta],BorderLayout.CENTER);
@@ -130,7 +131,7 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 			pDatos.add(pKcalTipoAlim[ta],BorderLayout.CENTER);
 			pGpoTipoAlim.add(pDatos); 
 		}
-			panelCentro.add(pGpoTipoAlim); // Agregando al panel central 
+			panelCentro.add(pGpoTipoAlim);  
 			conocer.add(panelSur,BorderLayout.SOUTH);
 			conocer.add(panelSuperior,BorderLayout.NORTH);
 			conocer.add(panelCentro,BorderLayout.CENTER);
@@ -141,29 +142,27 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 	private JPanel panelAlimentos() {
         JPanel pAlimentos = new JPanel();
         pAlimentos.setLayout(new BorderLayout());
-        JPanel panelCentro = new JPanel(); // Para la seleccion de alimentos y cauntos
-        JPanel panelCheck = new JPanel(); // Para cuadros de verificacion 
+        JPanel panelCentro = new JPanel(); 
+        JPanel panelCheck = new JPanel(); 
         panelCheck.setLayout(new GridLayout(1,0));
         panelCentro.setLayout(new BorderLayout());
-        JPanel panelSeleccion = new JPanel(); // Para la seleccionde alimentos
+        JPanel panelSeleccion = new JPanel(); 
         JLabel titulo = new JLabel("ELECCION DE ALIMENTOS Y ASIGNACION A UN TIEMPO");
         titulo.setHorizontalAlignment(JLabel.CENTER);
         JLabel tAlimento = new JLabel("Elige Alimento ");
-//        aceptar = new JButton("Aceptar xd"); // No se está agregando
-//        aceptar.addActionListener(this);
         tipoAli = new JLabel("");
         alimento = new JComboBox(alimentos);
         alimento.addItemListener(this);
-		tipoAli.setText(Tipo_Alimento[0]); // Se muestra el primero
+		tipoAli.setText(Tipo_Alimento[0]); 
         JPanel panelTiempos = new JPanel();
         panelTiempos.add(new JPanel());
         panelSeleccion.add(tAlimento);
         panelSeleccion.add(alimento);
         panelSeleccion.add(tipoAli);
         panelCentro.add(panelSeleccion,BorderLayout.NORTH);
-        panelCentro.add(creaPanelTiempos(),BorderLayout.SOUTH);
-        pAlimentos.add(titulo,BorderLayout.CENTER);
-        pAlimentos.add(panelCentro,BorderLayout.SOUTH);
+        panelCentro.add(creaPanelTiempos(),BorderLayout.CENTER);
+        pAlimentos.add(titulo,BorderLayout.NORTH);
+        pAlimentos.add(panelCentro,BorderLayout.CENTER);
         return pAlimentos;
 	}
 	
@@ -189,6 +188,7 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 		}
 		pListas.add(listas,BorderLayout.NORTH);
 		pListas.add(numAlim,BorderLayout.SOUTH);
+		
 		return	pListas;	
 }
 		
@@ -196,7 +196,7 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 	public JPanel creaPanelTiempos() {
 		JPanel tiemposAlimento = new JPanel();
 		tiemposAlimento.setLayout(new BorderLayout());
-		JLabel indicacion = new JLabel("Selecciona el tiempo donde lo quieres consumir");
+		JLabel indicacion = new JLabel("Selecciona el tiempo cuado deseas consumirlo");
 		indicacion.setHorizontalAlignment(JLabel.CENTER);
 		tiemposAlimento.add(indicacion,BorderLayout.NORTH);
 		JPanel eleccion = new JPanel();
@@ -204,28 +204,20 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 		aceptar.addActionListener(this);
 		eleccionTiempo = new JCheckBox[TIEMPOSDECOMIDA.length+1]; // 3 tiempos + "todos"
 		numAlimTie = new int[eleccionTiempo.length-1];
-		eleccion.setLayout(new GridLayout(0,4));
+		eleccion.setLayout(new GridLayout(0, 4));
 		for(int t = 0; t < eleccionTiempo.length-1; t++) { // Para evitar "todos" reducimos en -1
 			eleccionTiempo[t] = new JCheckBox(TIEMPOSDECOMIDA[t]);
-			eleccionTiempo[t].addActionListener(new ActionListener() { // Clase anonima al elemetno directo
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					boolean	seleccion = true;
-					for(int	t = 0; t < eleccionTiempo.length-1; t++) {
-							seleccion = eleccionTiempo[t].isSelected();
-							eleccionTiempo[eleccionTiempo.length-1].setSelected(seleccion);;				
-						}
-				}
-			});
+			eleccionTiempo[t].addActionListener(this);
 			eleccion.add(eleccionTiempo[t]);
 			numAlimTie[t] = 0;
 		}
 			eleccionTiempo[eleccionTiempo.length-1] = new JCheckBox("En todos"); // Este agrega al de cena 
 			eleccion.add(eleccionTiempo[eleccionTiempo.length-1]); // Desayuno aumento de 2 en 2
-			eleccion.add(aceptar); // Agregar al final xd
+			eleccionTiempo[eleccionTiempo.length-1].addActionListener(this);
+	        aceptar.setBounds(445,93, 80, 20);
+			tiemposAlimento.add(aceptar);
 			tiemposAlimento.add(eleccion,BorderLayout.CENTER);
 			tiemposAlimento.add(creaListas(),BorderLayout.SOUTH);
-//			tiemposAlimento.add(aceptar,BorderLayout.EAST);
 			return	tiemposAlimento;
 		
 	}
@@ -235,14 +227,23 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 		if(prod == verificar) {
 			String mensaje = "La verdura sin restriccion de cantidad\nLa fruta sin restricciones de cantidadcon variedad de colores\nLos creales deben ser suficientes\nLas legumbres deben ser suficientes combinadas con cereales\nProductos de origen animal deben ser consumidos en poca cantidad ";	
 			JOptionPane.showMessageDialog(this, mensaje);
-		}	
+		}if(prod == eleccionTiempo[0] || prod == eleccionTiempo[1]	|| prod == eleccionTiempo[2] || prod == eleccionTiempo[3]) {
+			boolean seleccion = true;
+			for (int i = 0; i < eleccionTiempo.length; i++) {
+				if(prod == eleccionTiempo[3]) {
+					eleccionTiempo[i].setSelected(true);
+				}
+				seleccion = seleccion && eleccionTiempo[i].isSelected();
+				eleccionTiempo[eleccionTiempo.length-1].setSelected(seleccion);
+			}
+		}
+			
 		if (prod == aceptar) {
 			Alimentos aliSel = (Alimentos) alimento.getSelectedItem();
 			for (int t = 0; t <eleccionTiempo.length-1; t++) { 
 				if(eleccionTiempo[t].isSelected() && !modelosListas[t].contains(aliSel)){
 					modelosListas[t].addElement(aliSel);
 					numAlimTiem[t].setText("Num. Ali.: " + (++numAlimTie[t]));
-					//numAlimTie[aliSel.getTipo()]++; // Esta parte está pendiente
 				}
 			}
 			
@@ -254,12 +255,15 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		int totalkc = 0;
+		try {
 		for(int ta = 0; ta < COLORES.length; ta++) {
 			//int base = (racTipoAlim[ta].getHeight()-racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]);
-	        //kCalTipoAlim[ta].setBounds(0, base, 60, racTipoAlim[ta].getHeight()*racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]);//racTipoAlim[ta].getHeight());
+	        //kCalTipoAlim[ta].setBounds(0, base, 60, racTipoAlim[ta].getHeight()*racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]/racTipoAlim[ta].getHeight());
 			//kCalTipoAlim[ta].setText("" + racTipoAlim[ta].getValue() * KCAL_TIPO_ALIM[ta] + "-KC");
-			//totalkc += racTipoAlim[ta].getValue() * KCAL_TIPO_ALIM[ta];
-		}
+			//totalkc += racTipoAlim[ta].getValue() * KCAL_TIPO_ALIM[ta]; // Fuciona bien esto
+			}
+		}catch(Exception ex) {JOptionPane.showMessageDialog(null, ex);}
+			
 		kilocalorias.setText("TotalKC : "+ totalkc + " ");
 		this.repaint();
 	}
