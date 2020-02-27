@@ -121,7 +121,7 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 			kCalTipoAlim[ta] = new JLabel(Tipo_Alimento[ta]);
 			kCalTipoAlim[ta].setBackground(COLORES[ta]);
 			kCalTipoAlim[ta].setOpaque(true);
-			kCalTipoAlim[ta].setVerticalAlignment(SwingConstants.TOP);
+			kCalTipoAlim[ta].setVerticalAlignment(SwingConstants.NORTH);
 			kCalTipoAlim[ta].setHorizontalAlignment(SwingConstants.CENTER);
 			pKcalTipoAlim[ta].setLayout(null);
 			pKcalTipoAlim[ta].setPreferredSize(new Dimension(60, 0));
@@ -202,17 +202,17 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 		JPanel eleccion = new JPanel();
 		aceptar = new JButton("Agregar");
 		aceptar.addActionListener(this);
-		eleccionTiempo = new JCheckBox[TIEMPOSDECOMIDA.length+1]; // 3 tiempos + "todos"
+		eleccionTiempo = new JCheckBox[TIEMPOSDECOMIDA.length+1]; 
 		numAlimTie = new int[eleccionTiempo.length-1];
 		eleccion.setLayout(new GridLayout(0, 4));
-		for(int t = 0; t < eleccionTiempo.length-1; t++) { // Para evitar "todos" reducimos en -1
+		for(int t = 0; t < eleccionTiempo.length-1; t++) { 
 			eleccionTiempo[t] = new JCheckBox(TIEMPOSDECOMIDA[t]);
 			eleccionTiempo[t].addActionListener(this);
 			eleccion.add(eleccionTiempo[t]);
 			numAlimTie[t] = 0;
 		}
-			eleccionTiempo[eleccionTiempo.length-1] = new JCheckBox("En todos"); // Este agrega al de cena 
-			eleccion.add(eleccionTiempo[eleccionTiempo.length-1]); // Desayuno aumento de 2 en 2
+			eleccionTiempo[eleccionTiempo.length-1] = new JCheckBox("En todos");  
+			eleccion.add(eleccionTiempo[eleccionTiempo.length-1]); 
 			eleccionTiempo[eleccionTiempo.length-1].addActionListener(this);
 	        aceptar.setBounds(445,93, 80, 20);
 			tiemposAlimento.add(aceptar);
@@ -225,7 +225,9 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 	public void actionPerformed(ActionEvent ae) {
 		Object prod = ae.getSource();
 		if(prod == verificar) {
-			String mensaje = "La verdura sin restriccion de cantidad\nLa fruta sin restricciones de cantidadcon variedad de colores\nLos creales deben ser suficientes\nLas legumbres deben ser suficientes combinadas con cereales\nProductos de origen animal deben ser consumidos en poca cantidad ";	
+			String mensaje = "La verdura sin restriccion de cantidad\nLa fruta sin restricciones de cantidadcon variedad de colores\n"
+					+ "Los creales deben ser suficientes\nLas legumbres deben ser suficientes combinadas con cereales\n"
+					+ "Productos de origen animal deben ser consumidos en poca cantidad ";	
 			JOptionPane.showMessageDialog(this, mensaje);
 		}if(prod == eleccionTiempo[0] || prod == eleccionTiempo[1]	|| prod == eleccionTiempo[2] || prod == eleccionTiempo[3]) {
 			boolean seleccion = true;
@@ -236,9 +238,7 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 				seleccion = seleccion && eleccionTiempo[i].isSelected();
 				eleccionTiempo[eleccionTiempo.length-1].setSelected(seleccion);
 			}
-		}
-			
-		if (prod == aceptar) {
+		}if (prod == aceptar) {
 			Alimentos aliSel = (Alimentos) alimento.getSelectedItem();
 			for (int t = 0; t <eleccionTiempo.length-1; t++) { 
 				if(eleccionTiempo[t].isSelected() && !modelosListas[t].contains(aliSel)){
@@ -254,14 +254,13 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 		int totalkc = 0;
 		try {
 		for(int ta = 0; ta < COLORES.length; ta++) {
-			int altura = (int)(0.5*(racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]));
-            int base = racTipoAlim[ta].getHeight()-racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]+altura;
-            kCalTipoAlim[ta].setBounds(0, base,60,altura);
+			int h = (int)(0.5*(racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]));
+            int base = racTipoAlim[ta].getHeight()-racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta] + h; 
+            kCalTipoAlim[ta].setBounds(0, base,60,h);
             kCalTipoAlim[ta].setText(""+racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]+"KC");
-            totalkc+=racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta];
+            totalkc += racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta];
 			}
 		}catch(Exception ex) {}
-			
 		kilocalorias.setText("TotalKC : "+ totalkc + " ");
 		this.repaint();
 	}
