@@ -107,8 +107,8 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 			JPanel pDatos = new JPanel(new BorderLayout());
 			JLabel tit = new JLabel(Tipo_Alimento[ta]);
 			tit.setHorizontalAlignment(SwingConstants.CENTER);
-		pKcalTipoAlim[ta] = new JPanel();
-		racTipoAlim[ta] = new JSlider();
+			pKcalTipoAlim[ta] = new JPanel();
+			racTipoAlim[ta] = new JSlider();
 			racTipoAlim[ta].addChangeListener(this);
 			racTipoAlim[ta].setOrientation(JSlider.VERTICAL);
 			racTipoAlim[ta].setPaintTicks(true);
@@ -118,14 +118,14 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 			racTipoAlim[ta].setValue(1);
 			racTipoAlim[ta].setMajorTickSpacing(2);
 			racTipoAlim[ta].setMinorTickSpacing(1);
-			racTipoAlim[ta].setBackground(Color.red);
 			kCalTipoAlim[ta] = new JLabel(Tipo_Alimento[ta]);
+			kCalTipoAlim[ta].setBackground(COLORES[ta]);
 			kCalTipoAlim[ta].setOpaque(true);
-			kCalTipoAlim[ta].setVerticalAlignment(SwingConstants.CENTER);
-			kCalTipoAlim[ta].setHorizontalAlignment(SwingConstants.RIGHT);
-			pKcalTipoAlim[ta].setLayout(new BorderLayout());
-			pKcalTipoAlim[ta].setPreferredSize(new Dimension(10, 10));
-			pKcalTipoAlim[ta].add(racTipoAlim[ta],BorderLayout.CENTER);
+			kCalTipoAlim[ta].setVerticalAlignment(SwingConstants.TOP);
+			kCalTipoAlim[ta].setHorizontalAlignment(SwingConstants.CENTER);
+			pKcalTipoAlim[ta].setLayout(null);
+			pKcalTipoAlim[ta].setPreferredSize(new Dimension(60, 0));
+			pKcalTipoAlim[ta].add(kCalTipoAlim[ta]);
 			pDatos.add(tit,BorderLayout.NORTH);
 			pDatos.add(racTipoAlim[ta],BorderLayout.WEST);
 			pDatos.add(pKcalTipoAlim[ta],BorderLayout.CENTER);
@@ -246,10 +246,7 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 					numAlimTiem[t].setText("Num. Ali.: " + (++numAlimTie[t]));
 				}
 			}
-			
 		}
-			
-    	
 	}
 
 	@Override
@@ -257,12 +254,13 @@ public class ManejoAlimento extends JFrame implements ActionListener,ChangeListe
 		int totalkc = 0;
 		try {
 		for(int ta = 0; ta < COLORES.length; ta++) {
-			//int base = (racTipoAlim[ta].getHeight()-racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]);
-	        //kCalTipoAlim[ta].setBounds(0, base, 60, racTipoAlim[ta].getHeight()*racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]/racTipoAlim[ta].getHeight());
-			//kCalTipoAlim[ta].setText("" + racTipoAlim[ta].getValue() * KCAL_TIPO_ALIM[ta] + "-KC");
-			//totalkc += racTipoAlim[ta].getValue() * KCAL_TIPO_ALIM[ta]; // Fuciona bien esto
+			int altura = (int)(0.5*(racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]));
+            int base = racTipoAlim[ta].getHeight()-racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]+altura;
+            kCalTipoAlim[ta].setBounds(0, base,60,altura);
+            kCalTipoAlim[ta].setText(""+racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta]+"KC");
+            totalkc+=racTipoAlim[ta].getValue()*KCAL_TIPO_ALIM[ta];
 			}
-		}catch(Exception ex) {JOptionPane.showMessageDialog(null, ex);}
+		}catch(Exception ex) {}
 			
 		kilocalorias.setText("TotalKC : "+ totalkc + " ");
 		this.repaint();
