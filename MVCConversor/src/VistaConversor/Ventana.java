@@ -1,9 +1,11 @@
 
 package VistaConversor;
 
+import ControladorConversor.ConversorControlador;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import java.util.Enumeration;
 import javax.swing.JButton;
 import javax.swing.*;
@@ -108,5 +110,9 @@ public class Ventana extends JFrame{
             comboDivD.addItem(elemento);
             comboDivO.addItem(elemento);
         }
+    }
+    
+    public void conectarControaldor(ConversorControlador controlador){
+        btnConvertir.addActionListener((ActionListener) controlador);
     }
 }
