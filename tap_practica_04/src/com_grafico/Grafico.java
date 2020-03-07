@@ -85,7 +85,8 @@ public class Grafico extends JComponent implements Serializable{ // Serializable
     }
     
     public void setValores(int valores[]){
-        for (int i = 0; i < valores.length; i++) {
+        if(valores.length == nfiguras)
+        for (int i = 0; i < nfiguras; i++) {
             vals[i] = valores[i];
             etis[i].setText("" + vals[i]);
         }

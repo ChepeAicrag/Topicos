@@ -7,23 +7,26 @@
 package com_grafico;
 
 import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 /**
  * 
  * @author Garcia Garcia Jose Angel
  */
-public class prueba extends JFrame{
-    public prueba(){
+public class pruebaB extends JFrame{
+        public pruebaB(){
         setSize(600, 400);
         setVisible(true);
         setLocationRelativeTo(null);
         String[] tLeyenda = {"Leyenda de barra 1 ","Leyenda de barra 2 ",
                         "Leyenda de barra 3 ","Leyenda de barra 4 "};
-        Grafico g = new Grafico("Muestra con 2 valores", tLeyenda);
+        Grafico g = new Grafico("Muestra con 4 valores", tLeyenda);
+        int[] a = {10,30,20,10};
+        g.setValores(a);
         add(g);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }    
     public static void main(String[] args) {
-        prueba b = new prueba();
+        pruebaB b = new pruebaB();
     }
 }
