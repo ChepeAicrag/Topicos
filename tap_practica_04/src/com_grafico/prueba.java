@@ -23,13 +23,14 @@ import javax.swing.JFrame;
  */
 public class prueba extends JFrame{
     public prueba(){
-        setSize(500, 500);
+        setSize(600, 400);
         setVisible(true);
         setLocationRelativeTo(null);
         String[] tLeyenda = {"Leyenda de barra 1 ","Leyenda de barra 2 ","Leyenda de Barra 3 ","Leyenda de Barra 4 "};
         Grafico g = new Grafico("Muestra de valores", tLeyenda);
+        //int[] a = {,5,6};
+        //g.setValores(a);
         add(g);
-        pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }    
     public static void main(String[] args) {

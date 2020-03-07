@@ -3,6 +3,7 @@ package com_grafico;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.io.Serializable;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -41,7 +42,6 @@ public class Grafico extends JComponent implements Serializable{ // Serializable
         tTitulo = encabezado;
         setLeyendas(tLeyenda); // Inecesario, creo
         inicarElementos(); // metodo para iniciar los valores
-        
                 
     }
 
@@ -61,9 +61,9 @@ public class Grafico extends JComponent implements Serializable{ // Serializable
             add(etis[i]);
         }
         // identificacion del color de cada barra colorB[]
-        // agregar codigo 
         for (int i = 0; i < nfiguras; i++) {
             colorB[i] = new JLabel();
+            colorB[i].setOpaque(true);
             colorB[i].setBackground(color[i]);
             add(colorB[i]);
         }
@@ -79,6 +79,7 @@ public class Grafico extends JComponent implements Serializable{ // Serializable
         leyendaBarra = new JLabel[nfiguras];
         for (int i = 0; i < nfiguras; i++) {
             leyendaBarra[i] = new JLabel(tLeyenda[i]);
+            add(leyendaBarra[i]);
         }
         inicarElementos();
     }
@@ -104,8 +105,8 @@ public class Grafico extends JComponent implements Serializable{ // Serializable
             f.setColor(color[i]); // Establece el color de la barra
             etis[i].setBounds(separa+i*(anchoB+separa)+(anchoB/2), (alto-20*colorB.length)-vals[i]*5-etis[i].getHeight()-2,30,20);
             f.fill3DRect(separa+i*(anchoB+separa),((alto-20*colorB.length)-vals[i]*5), anchoB, vals[i]*5, true);
-            colorB[i].setBounds((int)((ancho-f.getFontMetrics().stringWidth(titulo.getText()))/2)+100, 110,titulo.getText().length()*8,20);
-            leyendaBarra[nfiguras-1-i].setBounds((int)((ancho-f.getFontMetrics().stringWidth(titulo.getText()))/2)+100, 110,titulo.getText().length()*8,20);
+            colorB[nfiguras-1-i].setBounds(separa,getHeight()-(16*j)-(3*i),15,15);
+            leyendaBarra[nfiguras-1-i].setBounds(separa+25,getHeight()-(18*j)-(2*i),titulo.getText().length()*8,20); // El problema es y
             j++;
         }
     
