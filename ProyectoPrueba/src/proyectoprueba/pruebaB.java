@@ -8,7 +8,6 @@ package proyectoprueba;
 
 import com_grafico.Grafico;
 import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 /**
  * 
