@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Garcia Garcia Jose Angel
  */
 public class JCInput extends JPanel{
     private JComponent jinput;

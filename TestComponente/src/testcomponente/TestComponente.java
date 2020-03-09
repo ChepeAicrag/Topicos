@@ -19,7 +19,7 @@ public class TestComponente extends JFrame{
         t = new JCInput("Hola", "JTextField");
         add(t);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
+        pack();
     }
     public static void main(String[] args) {
         new TestComponente();
