@@ -26,6 +26,7 @@ public class Polinomio implements Serializable{
     }
     
     public Polinomio(double[] coeficiente) throws Exception{
+        grado = coeficiente.length-1;
         if (coeficiente.length > 1) {
             this.coeficiente = coeficiente;
         }else{
@@ -53,7 +54,7 @@ public class Polinomio implements Serializable{
     }
     
     public double getY(double x){
-        double y = 0;
+        double y = 0.0;
         for (int i = 0; i <= grado; i++) {
             y += coeficiente[i]*Math.pow(x, i);
         }
@@ -61,7 +62,7 @@ public class Polinomio implements Serializable{
     }
     
     public double getDerFX(double x){
-        double dx = 0;
+        double dx = 0.0;
         for (int i = 1; i < grado; i++) {
             dx += i * coeficiente[i]*Math.pow(x, i-1);
         }
@@ -70,14 +71,18 @@ public class Polinomio implements Serializable{
     
     public String getPolinomio(){
         String polinomio = "";
-        for (int i = 0; i < coeficiente.length; i++) {
-                polinomio += coeficiente[i];
-            if(i == 1){ 
-                polinomio += "X";
-            }else if( i > 1){
-                polinomio += "X^" + i;
-            }
-        }
+      for ( int i = 0; i <= grado; i++ ) {
+         if ( coeficiente[i] != 0 ){
+            if ( i != 0 && coeficiente[i] > 0) 
+                polinomio += "+";
+            if ( coeficiente[i] != 1 || i == 0 ) 
+                polinomio +=  + coeficiente[i];
+            if ( i > 0 ) 
+                polinomio += "x";
+            if ( i > 1 ) 
+                polinomio += "^" + i;
+         }
+      }
         return polinomio;
     }
     
@@ -95,14 +100,14 @@ public class Polinomio implements Serializable{
             x = new double[4];
             double a = coeficiente[2];
             double b = coeficiente[1];
-            double c = coeficiente[3];
+            double c = coeficiente[0];
             double rad = Math.pow(b, 2.0) - 4*a*c;
             if(rad >= 0){
                 x[0] = (-b + Math.sqrt(rad))/(2*a);
                 x[1] = (-b - Math.sqrt(rad))/(2*a);
             }else{ // Raices imaginarias
                 x[0] = x[2] = -b/(2*a); // parte real
-                x[1] = Math.sqrt(Math.abs(rad))/(2*a); // Parte imaginaria +
+                x[1] = + Math.sqrt(Math.abs(rad))/(2*a); // Parte imaginaria + /
                 x[3] = - Math.sqrt(Math.abs(rad))/(2*a); // Parte imagina -
            }
         }else if(grado > 2){
@@ -110,19 +115,17 @@ public class Polinomio implements Serializable{
             final int MAX_ITERA = 100;
             final double PRECISION = 0.001;
             x = new double[grado];
-            double error = 9999.0, x1 = 0, xi = 0;
+            double error = 999999.0, x1 = 0;
             int i = 0, n = 0;
             for (n = 0; n < grado-2; n++) {
                 i = 0;
-                do {                    
-                    xi = x1;
-                    x1 = xi-getY(xi) / getDerFX(xi);
-                    error = Math.abs((xi - x1)/ xi);
-                } while (error > PRECISION);
-            }
+                do {              
+                    x1 = x1 - getY(x1) / getDerFX(x1);
+                    i++;
+                } while (Math.abs(getY(x1)) > error && i == MAX_ITERA  );
+                    x[n] = x1;
+                }
         }
         return x;
     } 
-                
-    }
 }
