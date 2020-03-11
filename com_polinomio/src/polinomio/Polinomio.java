@@ -37,7 +37,9 @@ public class Polinomio implements Serializable{
     public void setCoeficiente(double coefs[]){
         grado = coefs.length-1;
         if(coefs.length > 1){
-            coeficiente = coefs;
+            for (int i = 0; i < coefs.length; i++) {
+                coeficiente[i] = coefs[i];
+            }
         }
     }
     
