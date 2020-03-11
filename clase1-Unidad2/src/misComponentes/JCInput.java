@@ -21,6 +21,25 @@ import javax.swing.JTextField;
  */
 public class JCInput extends JPanel{
     private JComponent jinput;
+    
+    public JCInput(){
+        super();
+        setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 0;
+        add(new JLabel("Nombre"),c);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.5;
+        c.gridx = 1;
+        c.gridy = 0;
+        add(jinput = new JTextField("Tipo JTextField"),c);
+        setVisible(true);
+        updateUI();
+    }
+    
     public JCInput(String nombre, String tipoComponente){
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();

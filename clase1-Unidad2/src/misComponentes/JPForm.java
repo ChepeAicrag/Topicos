@@ -18,6 +18,20 @@ import misComponentes.JCInput;
 public class JPForm extends JPanel{
     private ArrayList<JCInput> lstJCInput;
     
+    public JPForm(){
+        lstJCInput = new ArrayList<>();
+        setLayout(new  GridLayout(0, 1));
+        String[] txtCampos = {"Campo 1","Campo 2"};
+        String[] tipoComponente = {"Tipo 1","Tipo 2"};
+        for (int i = 0; i < txtCampos.length; i++) {
+            JCInput input = new JCInput(txtCampos[i], tipoComponente[i]);
+            add(input);
+        }
+        setVisible(true);
+        updateUI();
+    }
+    
+    
     public JPForm (String[] txtCampos,String[] tipoComponente){
         setLayout(new  GridLayout(0, 1));
         lstJCInput = new ArrayList();

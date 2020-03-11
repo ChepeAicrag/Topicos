@@ -14,6 +14,13 @@ import javax.swing.SwingConstants;
  * @author Garcia Garcia Jose Angel
  */
 public class MiBoton extends JButton{
+    private String txt;
+
+    public MiBoton(){
+        super();
+        txt = "etqiueta";
+        super.setText(txt);
+    }
     
     public MiBoton(String txt){
         super(txt);
