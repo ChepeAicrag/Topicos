@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package aplicacion;
 
 import java.util.logging.Level;
@@ -415,7 +410,6 @@ public class Aplicacion extends javax.swing.JDialog {
           coefs = new double[nCoef];
           for (int c = 0; c < nCoef; c++) {
               coefs[c] = coef[c];
-              JOptionPane.showMessageDialog(this, coefs[c]);
           } 
           // se fijan los valores de los coeficientes
           polinomio.setCoeficiente(coefs);

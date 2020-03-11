@@ -8,7 +8,7 @@ package polinomio;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Garcia Garcia Jose Angel
  */
 public class Prueba {
     public static void main(String[] args) throws Exception {

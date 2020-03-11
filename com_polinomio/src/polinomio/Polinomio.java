@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package polinomio;
 
@@ -88,9 +83,10 @@ public class Polinomio implements Serializable{
         return polinomio;
     }
     
-    // Para cuando es de grado 1
+    
     public double[] getRaices() throws Exception{
         double x[] = null;
+        // Para cuando es de grado 1
         if (grado == 1) {
             x = new double[grado];
             if (coeficiente[0] != 0) {
