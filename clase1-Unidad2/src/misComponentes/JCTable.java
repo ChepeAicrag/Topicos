@@ -43,4 +43,8 @@ public class JCTable extends JPanel{
         setVisible(true);
         updateUI();
     }
+    
+    public JTable getTabla(){
+        return tabla;
+    }
 }
