@@ -5,21 +5,28 @@
  */
 package barraherramientas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.event.AncestorListener;
 
 /**
  *
  * @author Garcia Garcia Jose Angel
  */
-public class BarraHerramientas extends JFrame{
+public class BarraHerramientas extends JFrame implements ActionListener{
 
     public BarraHerramientas(){
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         //add(normal());
         //add(vector());
-        add(sinParametros());
+       BarraHerramienta tes = sinParametros();
+       tes.conectarControlador(this);
+       add(tes);
+       
     }
     
     public BarraHerramienta sinParametros(){
@@ -44,7 +51,11 @@ public class BarraHerramientas extends JFrame{
         return b;
     }
     public static void main(String[] args) {
-        new BarraHerramientas();
+        BarraHerramientas b = new BarraHerramientas();
     }
-    
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        JOptionPane.showMessageDialog(this, "Boton");
+    }
 }
