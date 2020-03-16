@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.event.AncestorListener;
 
 /**
  *
@@ -23,7 +22,7 @@ public class BarraHerramientas extends JFrame implements ActionListener{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         //add(normal());
         //add(vector());
-       BarraHerramienta tes = sinParametros();
+       BarraHerramienta tes = vector();
        tes.conectarControlador(this);
        add(tes);
        
@@ -37,7 +36,7 @@ public class BarraHerramientas extends JFrame implements ActionListener{
     public BarraHerramienta vector(){
         JButton[] botones = new JButton[10];
         for (int i = 0; i < 10; i++) {
-           botones[i] = new JButton("Boton 1 " + i);
+           botones[i] = new JButton("Boton " + (i+1));
         }
        return new BarraHerramienta(botones); // Creado con un arreglo de botones
     }
@@ -54,8 +53,13 @@ public class BarraHerramientas extends JFrame implements ActionListener{
         BarraHerramientas b = new BarraHerramientas();
     }
 
-    @Override
     public void actionPerformed(ActionEvent ae) {
-        JOptionPane.showMessageDialog(this, "Boton");
+        JButton b = (JButton) ae.getSource();
+        String btnSe = ae.getActionCommand();
+           if(btnSe.equals("boton 1"))
+                JOptionPane.showMessageDialog(this, "Selecciono el btn 1");
+            else
+                JOptionPane.showMessageDialog(this, "Selecciono el btn " + (b.getActionCommand()));
     }
-}
+
+   }

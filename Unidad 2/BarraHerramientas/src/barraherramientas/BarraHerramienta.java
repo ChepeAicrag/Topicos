@@ -11,7 +11,7 @@
    comandos para insertar 
     insert into nombreTabla
     values (val1,val2 ... valn); // Mismo orden en la que fue creada la tabla
-    inser into nombreTabla
+    insert into nombreTabla
     (campo1,campo2 ... campon)
     values(val1,val2 ... valn);
     delete from nombreTabla; // borra toda las duplas 
@@ -31,10 +31,8 @@
 package barraherramientas;
 
 import java.awt.FlowLayout;
-import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.util.Vector;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 /**
@@ -48,38 +46,46 @@ public class BarraHerramienta extends JPanel{
     private int pos;    
     
     public BarraHerramienta(){
-        botones = new Vector<>(1); // El boton con imagen de mas
+        botones = new Vector<>(1); // El primer boton agregado, si es que no incializa uno
         agregarBoton(agregar);
-        // agregar el action listener a agregar 
     }
     
     public BarraHerramienta(int nBotones){
         this.nBotones = nBotones; // EL ultimo es el de agregar
-        botones = new Vector<>(nBotones); // Creamos el arreglo con el tamaño que desea el cliente
-        agregarBoton(agregar);
+        botones = new Vector<>(nBotones); // Creamos el vector con el tamaño que desea el cliente
+        //agregarBoton(agregar);
     }
     
     public BarraHerramienta(JButton[] botones){
         this.nBotones = botones.length;
         this.botones = new Vector(nBotones);
-        agregarBoton(agregar);
-        for (int i = 0; i < botones.length; i++) {
+        //agregarBoton(agregar);
+        for (int i = 0; i < nBotones; i++) {
             agregarBoton(botones[i]);
         }
     }
     
     public void agregarBoton(JButton b){
-         setLayout(s);
-        if(botones.size() == nBotones)
+        setLayout(s);
+        if(botones.size() < pos)
             return;
-        botones.add(b);
-        add(b);  
+        botones.add(b); // lo agrega al ultimo
+        add(b);
+        pos++;
     }
     
-    // c de la clase controlador
+    public JButton getBotonPos(int i){
+        if(i >= 0 && i < nBotones)
+            return this.botones.elementAt(0); // Tre regresa el primer elemento, con la intencion de evitar el null
+        else
+            return botones.elementAt(i);
+    }
+    
     public void conectarControlador(ActionListener c){
         for (int i = 0; i < botones.size(); i++) {
             botones.elementAt(i).addActionListener(c);
+            botones.elementAt(i).setActionCommand("boton " + (i+1) );
         }
     }
+  
 }

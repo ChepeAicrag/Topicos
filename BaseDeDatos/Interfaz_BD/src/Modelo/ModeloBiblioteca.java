@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class ModeloBiblioteca {
     private String  host     = "localhost";
     private String  usuario     = "postgres";
-    private String  clave       = "Dexter1998";
+    private final String  clave       = "Dexter1998";
     private int     puerto      = 5432;
     private String  servidor    = "";
     private String baseDatos;
