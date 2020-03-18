@@ -23,7 +23,7 @@ public class BarraHerramientas extends JFrame implements ActionListener{
         //add(normal());
         //add(vector());
        BarraHerramienta tes = vector();
-       tes.conectarControlador(this);
+       //tes.conectarControlador(this);
        add(tes);
        
     }
