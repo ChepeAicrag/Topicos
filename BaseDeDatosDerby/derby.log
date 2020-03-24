@@ -1,7 +1,7 @@
-Tue Mar 24 14:01:27 CST 2020 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
+Tue Mar 24 16:28:53 CST 2020 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Tue Mar 24 14:01:27 CST 2020:
- Iniciando instancia a816c00e-0171-0e22-a0a7-ffff8fdc5828 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
+Tue Mar 24 16:28:54 CST 2020:
+ Iniciando instancia a816c00e-0171-0ea9-9d0c-ffff8fdc5828 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
 Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_101/db/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,3 +12,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby
 Cargador de clases de base de datos iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Mar 24 16:32:57 CST 2020: cerrando motor de Derby
+----------------------------------------------------------------
+Tue Mar 24 16:32:57 CST 2020:
+Cerrando la instancia a816c00e-0171-0ea9-9d0c-ffff8fdc5828 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+----------------------------------------------------------------
