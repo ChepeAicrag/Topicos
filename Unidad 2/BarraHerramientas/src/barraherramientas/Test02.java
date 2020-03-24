@@ -6,13 +6,12 @@
 
 package barraherramientas;
 
+import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 
 /**
  * 
@@ -27,11 +26,22 @@ public class Test02 extends JFrame implements MouseListener{
     public Test02(){
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //add(normal());
-        //add(vector());
-       BarraHerramienta tes = vector();
-       //tes.conectarControlador(this);
-       add(tes);
+        BarraHerramienta tes =normal();
+        tes.agregarBoton(new JButton("1"));
+        tes.agregarBoton(new JButton("2"));
+        tes.agregarBoton(new JButton("3"));
+        tes.agregarBoton(new JButton("4"));
+        tes.agregarBoton(new JButton("5"));
+        tes.agregarBoton(new JButton("6"));
+        tes.agregarBoton(new JButton("7"));
+        System.out.println(tes.maxBot()); 
+        System.out.println(tes.numBot());
+        tes.conectarControlador(this);
+        add(tes,BorderLayout.EAST);
+    }
+    
+    public BarraHerramienta normal(){
+        return new BarraHerramienta(6);
     }
     
      public BarraHerramienta vector(){
@@ -44,27 +54,22 @@ public class Test02 extends JFrame implements MouseListener{
     
     @Override
     public void mouseClicked(MouseEvent me) {
-        JOptionPane.showMessageDialog(null, "Hola clicked");
     }
 
     @Override
     public void mousePressed(MouseEvent me) {
-        JOptionPane.showMessageDialog(null, "Hola entré a Pressed");
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        JOptionPane.showMessageDialog(null, "Hola entré a Relased");
     }
 
     @Override
     public void mouseEntered(MouseEvent me) {
-        JOptionPane.showMessageDialog(null, "Hola entré a Entered");
     }
 
     @Override
     public void mouseExited(MouseEvent me) {
-        JOptionPane.showMessageDialog(null, "Hola entré a Exited");
     }
 
 }

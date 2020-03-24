@@ -5,6 +5,8 @@
  */
 package barraherramientas;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -23,15 +25,11 @@ public class BarraHerramientas extends JFrame implements ActionListener{
         //add(normal());
         //add(vector());
        BarraHerramienta tes = vector();
-       //tes.conectarControlador(this);
-       add(tes);
-       
+       tes.cambiarDiseñor(new FlowLayout(FlowLayout.CENTER, 0, 0));
+       tes.conectarControlador(this);
+       add(tes,BorderLayout.SOUTH);      
     }
     
-    public BarraHerramienta sinParametros(){
-        BarraHerramienta b = new BarraHerramienta();
-        return b;
-    }
     
     public BarraHerramienta vector(){
         JButton[] botones = new JButton[10];
@@ -41,14 +39,6 @@ public class BarraHerramientas extends JFrame implements ActionListener{
        return new BarraHerramienta(botones); // Creado con un arreglo de botones
     }
     
-    public BarraHerramienta normal(){
-        BarraHerramienta b = new BarraHerramienta(2); // Creado con tamaño de n botones
-        JButton b1 = new JButton("Hola 1");
-        JButton b2 = new JButton("Hola 2");
-        b.agregarBoton(b1);
-        b.agregarBoton(b2);
-        return b;
-    }
     public static void main(String[] args) {
         BarraHerramientas b = new BarraHerramientas();
     }

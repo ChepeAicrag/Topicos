@@ -6,14 +6,17 @@
 
 package barraherramientas;
 
-import com.sun.java.swing.plaf.windows.WindowsTreeUI;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.EventListener;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 /**
  * 
@@ -25,13 +28,19 @@ public class TestMultiple extends JFrame implements ActionListener,MouseListener
     }
     
     public TestMultiple(){
+        SpringLayout s = new SpringLayout();
+        JPanel p = new JPanel(s);
+        BarraHerramienta tes = vector();
+        tes.conectarControlador(this);
+        setSize(500, 500);
+        p.add(tes);
+        s.putConstraint(SpringLayout.NORTH, tes, 10,SpringLayout.NORTH,p);
+        s.putConstraint(SpringLayout.WEST, tes, 12,SpringLayout.WEST,p);
+       s.putConstraint(SpringLayout.EAST, tes,-12, SpringLayout.EAST,p);
+        add(p);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //add(normal());
-        //add(vector());
-       BarraHerramienta tes = vector();
-       tes.conectarControlador(this);
-       add(tes);
+        
     }
     
      public BarraHerramienta vector(){
@@ -74,14 +83,14 @@ public class TestMultiple extends JFrame implements ActionListener,MouseListener
     public void mouseEntered(MouseEvent me) {
         JButton b = (JButton) me.getSource();
         b.setOpaque(true);
-        b.setBackground(Color.GREEN);
+        b.setBorder(new LineBorder(Color.BLACK, 2));    
     }
 
     @Override
     public void mouseExited(MouseEvent me) {
          JButton b = (JButton) me.getSource();
         b.setOpaque(true);
-        b.setBackground(Color.blue);
-        
+        b.setBorder(new LineBorder(Color.yellow, 2));
+       
     }
 }

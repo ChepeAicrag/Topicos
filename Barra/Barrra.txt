@@ -1,0 +1,203 @@
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
+import java.awt.event.ContainerListener;
+import java.awt.event.FocusListener;
+import java.awt.event.HierarchyBoundsListener;
+import java.awt.event.HierarchyListener;
+import java.awt.event.InputMethodListener;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
+import java.util.Vector;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.ChangeListener;
+
+/**
+ * Clase Barra de Herramientas
+ * @author Garcia Garcia Jose Angel
+ * @version 1.1
+ */
+
+public class BarraHerramienta2 extends JPanel{
+    
+    private Vector<JButton> botones;
+    private int nBotones;
+    private JButton agregar = new JButton("boton 1"); // Siempre lo tendra el panel
+    FlowLayout s = new FlowLayout();
+    private int pos;    
+    
+    /**
+     * Constructor para una Barra de Herramientas con 1 boton por default
+     */
+    public BarraHerramienta(){
+        botones = new Vector<>(1); // El primer boton agregado, si es que no incializa uno
+        agregarBoton(agregar);
+    }
+    
+    /**
+     * Constructor para una Barra de Herramientas con n botones
+     * @param nBotones Número de botones
+     */
+    public BarraHerramienta(int nBotones){
+        this.nBotones = nBotones; // EL ultimo es el de agregar
+        botones = new Vector<>(nBotones); // Creamos el vector con el tamaño que desea el cliente
+        //agregarBoton(agregar);
+    }
+    
+    /**
+     * Constructor para una barra de Herramientas con botones con los datos tal
+     * @param datos Arreglo de String con información para cada boton
+       */
+    public BarraHerramienta(String[] datos){
+        this.nBotones = datos.length;
+        this.botones = new Vector(nBotones);
+        for (int i = 0; i < datos.length; i++) { 
+                agregarBoton(new JButton(datos[i]));
+        }
+    }
+    
+    /**
+     * Constructor para una Barra de Herramientas con botones y sus respectivos iconos
+     * @param iconos Arreglo de iconos que contendrá cada boton
+       */
+    public BarraHerramienta(ImageIcon[] iconos){
+        this.nBotones = iconos.length;
+        this.botones = new Vector(nBotones);
+         for (int i = 0; i < iconos.length; i++) {
+                JButton b = new JButton("boton " + (i+1),iconos[i]);
+                b.setIconTextGap(JButton.CENTER);
+                agregarBoton(b);
+        }
+    }
+    /**
+     * Constructor de una Barra de Herramientas con botones con sus respectivos iconos y etiqueta
+     * @param iconos Arreglo de iconos que contendrá cada boton
+     * @param etq Arreglo de String con información para cada boton
+       */
+    public BarraHerramienta(ImageIcon[] iconos,String[]etq){
+        if(iconos.length != etq.length){
+            botones = new Vector<>(1);
+            agregarBoton(agregar);
+        }
+        this.nBotones = iconos.length;
+        this.botones = new Vector(nBotones);
+         for (int i = 0; i < iconos.length; i++) { 
+                ImageIcon ico = new ImageIcon(iconos[i].getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
+                JButton b = new JButton(etq[i],ico);
+                b.setIconTextGap(10);
+                //b.setVerticalTextPosition(SwingConstants.TOP);
+                b.setHorizontalTextPosition(SwingConstants.RIGHT);
+                b.setVerticalTextPosition(SwingConstants.CENTER);
+                agregarBoton(b);
+        }
+    }
+    
+    /**
+     * Constructor de una Barra de Herramienta con los respectivos botones solicitados
+     * @param botones Arreglo de botones que contendrá la Barra
+       */
+    public BarraHerramienta(JButton[] botones){
+        this.nBotones = botones.length;
+        this.botones = new Vector(nBotones);
+        //agregarBoton(agregar);
+        for (int i = 0; i < nBotones; i++) {
+            agregarBoton(botones[i]);
+        }
+    }
+    
+    /**
+     * Método para agergar un botón a la barra
+     * @param b Bóton a agregar
+       */
+    public void agregarBoton(JButton b){
+        setLayout(s);
+        if(botones.size() < pos)
+            return;
+        botones.add(b); // lo agrega al ultimo
+        add(b);
+        pos++;
+    }
+    
+    /**
+     * Método que retorna el botón en la posición especificada
+     * @param i Posicón del boton
+     * @return Botón en la posición dada
+       */
+    public JButton getBotonPos(int i){
+        if(i >= 0 && i < nBotones)
+            return this.botones.elementAt(0); // Tre regresa el primer elemento, con la intencion de evitar el null
+        else
+            return botones.elementAt(i);
+    }
+    
+    /**
+     * Método  que te permite conectar a la Barra de Herramientas con la clase Controlador
+     * @param c Objeto de la clase Controlador que implementa un Listener
+       */
+    public void conectarControlador(Object c){
+        
+        for (int i = 0; i < botones.size(); i++) {
+            if(c instanceof ActionListener)
+            botones.elementAt(i).addActionListener((ActionListener) c);
+            if(c instanceof AncestorListener)
+            botones.elementAt(i).addAncestorListener((AncestorListener) c);
+            if(c instanceof ChangeListener)
+            botones.elementAt(i).addChangeListener((ChangeListener) c);
+            if(c instanceof ComponentListener)
+            botones.elementAt(i).addComponentListener((ComponentListener) c);
+            if(c instanceof ContainerListener)
+            botones.elementAt(i).addContainerListener((ContainerListener) c);
+            if(c instanceof FocusListener)
+            botones.elementAt(i).addFocusListener((FocusListener) c);
+            if(c instanceof HierarchyListener)
+            botones.elementAt(i).addHierarchyBoundsListener((HierarchyBoundsListener) c);
+            if(c instanceof HierarchyBoundsListener)
+            botones.elementAt(i).addHierarchyBoundsListener((HierarchyBoundsListener) c);
+            if(c instanceof InputMethodListener)
+            botones.elementAt(i).addInputMethodListener((InputMethodListener) c);
+            if(c instanceof ItemListener)
+            botones.elementAt(i).addItemListener((ItemListener) c);
+            if(c instanceof KeyListener)
+            botones.elementAt(i).addKeyListener((KeyListener) c);
+            if(c instanceof MouseListener)
+            botones.elementAt(i).addMouseListener((MouseListener) c);
+            if(c instanceof MouseMotionListener)
+            botones.elementAt(i).addMouseMotionListener((MouseMotionListener) c);
+            if(c instanceof MouseWheelListener)
+            botones.elementAt(i).addMouseWheelListener((MouseWheelListener) c);
+            botones.elementAt(i).setActionCommand("boton " + (i+1) );
+        }
+    }
+
+
+    @Override
+    public void paintComponent(Graphics f){
+        super.paintComponent(f);
+       int ancho= getWidth();
+       int alto=getHeight();
+       int tam=(ancho)/(botones.size());
+        System.out.println(alto);
+        System.out.println(ancho);
+       for(int i=0; i<botones.size();i++){
+         
+         if(i==0){botones.elementAt(i).setBounds(0, 0,tam,alto);}
+         else{
+             // System.out.println(tam*(i));
+             botones.elementAt(i).setBounds(tam*(i),0,tam,alto);
+         }   
+       }
+       
+       
+      
+    }
+  
+}
