@@ -1,0 +1,36 @@
+Nombre del equipo:
+	Los Cuatro Fantásticos 
+
+Nombre de los integrantes:
+	Chávez Sánchez Kevin Edilberto
+	García García José Ángel
+	Sánchez López Laura Yessenia
+	Jiménez Rosas Juan José
+@version 23/03/2020
+
+Descripción de la barra de herramientas para ser implementada:
+	Nuestro programa cuenta con seis constructores, el cual nuestro principal componente es el botón, por ende creamos una botonera. 
+	Podemos implementar botones con diferentes características; Desde tener un simple botón hasta ponerle iconos con textos que deseamos. 
+	Todas estas características pueden usarse al momento de instanciar un objeto de la clase "BarraHerramienta". 
+	Una cualidad es que hereda de un JPanel para que su visualización sea más amigable con el cliente.
+	Dicho lo anterior, el uso de nuestra barra tiene que ser agregandola a un panel previamente al JFrame; es decir, no es valido agregarla directamente a un JFrame.
+
+Además, tiene implementados 15 métodos que podemos instanciar con objetos de nuestra clase.
+Para agregar un boton, tenemos un método sobrecargado el cual puede tener diferentes características.
+1.Método para agregar un botón solo con texto a la barra
+2.Método para agregar un botón solo con icono a la barra
+3.Método para agregar un botón a la barra
+4.Método para agregar un botón a la barra en una posición dada
+5.Método para cambiar el diseño a la Barra, sin eliminar los botones	
+6.Método para cambiar el número máximo de botones en la barra
+7.Método que te permite conectar a la Barra de Herramientas con la clase Controlador
+8.Método para eliminar todos los botones
+9.Método para eliminar el botón de la posición dada
+10.Método para obtener los botones de la barra
+11.Método para retornar el boton de la posición dada
+12.Método para retornar el número máximo de botones en la barra
+13.Método para retornar el número de botones que hay en la barra
+14.Método para cambiar las etiquetas del bóton
+15.Método para cambiar el fondo de la barra
+
+Todo lo realizado para que el cliente pueda tener el control al momento de querer agregar, eliminar o realizar alguna modiciación a sus botones.

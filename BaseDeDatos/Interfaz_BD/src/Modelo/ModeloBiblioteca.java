@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Garcia Garcia Jose Angel
  */
 public class ModeloBiblioteca {
     private String  host     = "localhost";
@@ -177,7 +177,7 @@ public boolean deleteCliente(Cliente c){
             }
  
         } catch (SQLException e) {
-            System.err.println("Error al CARGAR DATOS " + e);
+           // System.err.println("Error al CARGAR DATOS " + e);
         }
         return clientes;
     }

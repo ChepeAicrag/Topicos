@@ -17,8 +17,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Garcia Garcia Jose Angel
  */
 public class ControladorBiblioteca implements ActionListener, MouseListener {
 

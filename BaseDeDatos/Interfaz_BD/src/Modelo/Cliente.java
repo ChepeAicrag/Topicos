@@ -8,7 +8,7 @@ package Modelo;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Garcia Garcia Jose Angel
  */
 public class Cliente {
   private String nif;

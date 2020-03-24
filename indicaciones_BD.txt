@@ -1,0 +1,29 @@
+/*
+ * Componente tipo panel con los botones
+ * Arreglar componente para el examen
+ * Descargar el conector .jar
+    Agregar hilos al proyecto 
+    Para le fin del semestre
+
+   Duplas son las filas o renglones
+ * create table "nonbre de la tabla"{
+ *  podemos crearlo d emanera grafica
+   comandos para insertar 
+    insert into nombreTabla
+    values (val1,val2 ... valn); // Mismo orden en la que fue creada la tabla
+    insert into nombreTabla
+    (campo1,campo2 ... campon)
+    values(val1,val2 ... valn);
+    delete from nombreTabla; // borra toda las duplas 
+    delete from nombreTabla where campo=val; (usar and,or)// condicion que deben cumplir las duplas a eliminar
+    update nombreTabla set campo1=valor; // actualiza todas las duplas
+    update nombreTabla set campo1=valor where (condicion); //
+    select * from nombreTabla;
+    select campo,campo2,campo3,campon from nombreTabla; // Muestra las columnas de todas las duplas 
+    select * from nombreTabla where (condicion); // Muestra las duplas con esa condicon
+    select campo,campo2,campo3,campon from nombreTabla (condicion) // consultas 
+ *   };
+    En modelo van los datos
+    
+
+ */
