@@ -6,6 +6,8 @@
 
 package practica_08;
 
+import java.io.File;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -14,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import static sun.java2d.cmm.ColorTransform.In;
 
 /**
  * 
@@ -27,7 +30,12 @@ public class ManejoDatos {
     
     public ManejoDatos(){
         try{
-        crearConexion = crearConexion.getConexion("jdbc:derby://localhost:1527/mediciones_personas","chepe","chepe123");
+        String usuario = "",contraseña = "";
+        In leer = new In("contraseña.txt");
+        String[] line = leer.readLine().split(" ");
+        usuario = line[0];
+        contraseña = line[1];
+        crearConexion = crearConexion.getConexion("jdbc:derby://localhost:1527/mediciones_personas",usuario,contraseña);
         conexion = crearConexion.getConeccion();
         }catch(Exception e){
         }

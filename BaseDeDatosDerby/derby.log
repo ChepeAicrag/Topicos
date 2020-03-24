@@ -1,7 +1,7 @@
-Tue Mar 24 16:28:53 CST 2020 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
+Tue Mar 24 17:20:37 CST 2020 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Tue Mar 24 16:28:54 CST 2020:
- Iniciando instancia a816c00e-0171-0ea9-9d0c-ffff8fdc5828 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
+Tue Mar 24 17:20:45 CST 2020:
+ Iniciando instancia a816c00e-0171-0ed8-f0ba-ffff8fdc5828 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
 Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_101/db/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,9 +12,57 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby
 Cargador de clases de base de datos iniciado - derby.database.classpath=''
-----------------------------------------------------------------
-Tue Mar 24 16:32:57 CST 2020: cerrando motor de Derby
-----------------------------------------------------------------
-Tue Mar 24 16:32:57 CST 2020:
-Cerrando la instancia a816c00e-0171-0ea9-9d0c-ffff8fdc5828 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
-----------------------------------------------------------------
+Tue Mar 24 17:20:45 CST 2020 Thread[DRDAConnThread_2,5,main] (XID = 771), (SESSIONID = 0), (DATABASE = mediciones_personas), (DRDAID = {1}), Cleanup action starting
+java.sql.SQLInvalidAuthorizationSpecException: El nombre de usuario '?chepe' no es válido. 
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserIsNotARole(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+Caused by: ERROR 28502: El nombre de usuario '?chepe' no es válido. 
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.iapi.util.IdUtil.getUserAuthorizationId(Unknown Source)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.initialize(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.setupConnection(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.startTransaction(Unknown Source)
+	... 14 more
+============= begin nested exception, level (1) ===========
+ERROR 28502: El nombre de usuario '?chepe' no es válido. 
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.iapi.util.IdUtil.getUserAuthorizationId(Unknown Source)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.initialize(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.setupConnection(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.startTransaction(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserIsNotARole(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+============= end nested exception, level (1) ===========
+Cleanup action completed
+Tue Mar 24 17:20:45 CST 2020 Thread[DRDAConnThread_2,5,main] (DATABASE = mediciones_personas), (DRDAID = {1}), El nombre de usuario '?chepe' no es válido. 
