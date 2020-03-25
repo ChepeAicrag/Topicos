@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import static sun.java2d.cmm.ColorTransform.In;
 
@@ -27,6 +28,7 @@ public class ManejoDatos {
     private Conexion crearConexion;// Crea conexion
     private final int CAMPOS_PERSONA = 4;    
     private final int CAMPOS_ACTIVIDAD = 3;
+    private final int CAMPOS_MEDICIONES = 8;
     
     public ManejoDatos(){
         try{
@@ -82,4 +84,31 @@ public class ManejoDatos {
         }
         return datos;
     }
+    
+    public List <Object[]> conexionConsultaMediciones(String sql){
+        // Regresa los registros de actividad
+        List <Object[]> datos = new ArrayList<Object[]>();
+        DateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+           Statement ps = conexion.createStatement();
+           ResultSet rs = ps.executeQuery(sql);
+            while (rs.next()) {
+                // Estructura del registro activiad
+                String [] dat = new String[CAMPOS_MEDICIONES];
+                dat[0] = String.valueOf(rs.getInt(1));
+                dat[1] = fecha.format((Date) rs.getDate(2));
+                dat[2] = String.valueOf((Integer) rs.getInt(3));
+                dat[3] =  String.valueOf((Integer) rs.getInt(4));
+                dat[4] = String.valueOf((Integer) rs.getInt(5));
+                dat[5] = String.valueOf((Integer) rs.getInt(6));
+                dat[6] = String.valueOf((Integer) rs.getInt(7));
+                dat[7] = String.valueOf((Integer) rs.getInt(8));      
+                datos.add(dat);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al consultar mediciones " + e);
+        }
+        return datos;
+    }
+    
 }

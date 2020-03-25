@@ -19,6 +19,9 @@ public class PruebaAccesoDatos {
         consulta_actividades(baseDatos);
         System.out.println("\n\n----------------CONSULTA DE PERSONAS------------");
         consulta_personas(baseDatos);
+        System.out.println("\n\n----------------CONSULTA DE MEDICIONES------------");
+        consulta_mediciones(baseDatos);
+        
     }
     
     public static void consulta_personas(ManejoDatos baseDatos){
@@ -34,9 +37,7 @@ public class PruebaAccesoDatos {
                 System.out.printf("%-10s",reg[j]);    
             }
         }
-    }
-    
-    
+    } 
     public static void consulta_actividades(ManejoDatos baseDatos){
         String consulta = "SELECT * FROM chepe.TIPOACTIVIDAD";
         ArrayList<Object[]> actividad = (ArrayList<Object[]>) baseDatos.conexionConsultaActividad(consulta);
@@ -48,4 +49,16 @@ public class PruebaAccesoDatos {
             }
         }
     }
+    public static void consulta_mediciones(ManejoDatos baseDatos){
+        String consulta = "SELECT * FROM chepe.MEDICIONES";
+        ArrayList<Object[]> actividad = (ArrayList<Object[]>) baseDatos.conexionConsultaMediciones(consulta);
+        for (int i = 0; i < actividad.size(); i++) {
+            Object [] reg = actividad.get(i);
+            System.out.println("");
+            for (int j = 0; j < reg.length; j++) {
+                System.out.printf("%-20s",reg[j]);
+            }
+        }
+    }
+    
 }

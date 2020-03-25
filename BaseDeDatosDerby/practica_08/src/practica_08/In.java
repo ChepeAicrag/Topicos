@@ -8,7 +8,7 @@ package practica_08;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author García García Jose Angel
  */
 
 /******************************************************************************

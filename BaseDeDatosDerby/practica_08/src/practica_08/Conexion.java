@@ -45,10 +45,10 @@ public class Conexion {
     /**
      * El método tiene la funcion de 
      * incrementar el numero de conexiones solicitadas y ademas
-     * verificar que se cree una unica instancia de Conexion 
+     * verificar que se cree una unica instancia de Conexion; 
      * si ya existe, simplemente la retorna
      * Tiene que tener la firma de static porque no requiere de una instancia ya 
-     * creda para ejecutarlo, debido a que primero ejecutamos el método y despues
+     * creada para ejecutarlo, debido a que primero ejecutamos el método y despues
      * su constructor.
      * 
      */
@@ -65,9 +65,9 @@ public class Conexion {
      
     /**
      * El método tiene la función de cerrar la conexión
-     * para ello comprueba que la variable coneccion sea una instancia
+     * para ello comprueba que la variable coneccion sea una instancia,
      * es decir, que sea !null y posterior a ello comprueba nuevamente
-     * que el numero de conexiones sea 1 para cerrarla y retornar true
+     * que el numero de conexiones sea 1 para cerrarla y retornar true;
      * si no es igual a 1, simplemente decrementa el valor y no cierra
      * conexion porque como mencionamos al principio, solo trabajamos con 
      * una unica conexion, por lo que esta solo se cerrara cuando se tenga 

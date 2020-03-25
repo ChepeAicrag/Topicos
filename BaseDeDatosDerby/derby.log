@@ -66,3 +66,9 @@ ERROR 28502: El nombre de usuario '?chepe' no es válido.
 ============= end nested exception, level (1) ===========
 Cleanup action completed
 Tue Mar 24 17:20:45 CST 2020 Thread[DRDAConnThread_2,5,main] (DATABASE = mediciones_personas), (DRDAID = {1}), El nombre de usuario '?chepe' no es válido. 
+----------------------------------------------------------------
+Tue Mar 24 18:30:02 CST 2020: cerrando motor de Derby
+----------------------------------------------------------------
+Tue Mar 24 18:30:02 CST 2020:
+Cerrando la instancia a816c00e-0171-0ed8-f0ba-ffff8fdc5828 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+----------------------------------------------------------------
