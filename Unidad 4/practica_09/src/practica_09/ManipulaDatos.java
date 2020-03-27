@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Locale;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
@@ -103,11 +105,31 @@ public class ManipulaDatos extends JFrame{
         JLabel etqName = new JLabel("Nombre:");
         nombre = new JTextField(DA_NOMBRE,15);
         JLabel etqFecha = new JLabel("Fecha Nacimiento : ");
-        Date today = new Date(Calendar.getInstance().getTimeInMillis());
-        fechaNac = new JSpinner(new SpinnerDateModel(today, null, null, Calendar.MONTH));
-        JSpinner.DateEditor editor = new JSpinner.DateEditor(fechaNac, "dd/MM/yy        ");
+        Date today = new Date(1999, 00, 01);
+        SpinnerModel sp = new SpinnerDateModel(today, null, null, Calendar.MONTH);
+        fechaNac = new JSpinner(sp);
+        JSpinner.DateEditor editor = new JSpinner.DateEditor(fechaNac, "dd/MM/yy  ");
         fechaNac.setEditor(editor);
         JLabel etqAños = new JLabel("Años: ");
+        fechaNac.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent ce) {
+               int edad = calcular((java.util.Date) fechaNac.getValue());
+               if(edad >= MIN_EDAD && edad <= MAX_EDAD)
+                  etqAños.setText(" Años: " + edad);
+               else
+                   fechaNac.setValue(new Date(1999, 00, 01));
+            }
+            public int calcular(java.util.Date fechaNac) {
+                Date today = new Date(Calendar.getInstance().getTimeInMillis());
+                int years = today.getYear() - fechaNac.getYear();
+                int months = today.getMonth() - fechaNac.getMonth();
+                int days = today.getDay() - fechaNac.getDay();
+                if(months < 0 || (months == 0 && days < 0))
+                    years--;
+                return years;
+            }
+        });
         JLabel etqSexo = new JLabel("Sexo : ");
         hombre = new JRadioButton("Hombre");
         mujer = new JRadioButton("Mujer");
