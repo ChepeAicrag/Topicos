@@ -12,8 +12,10 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
@@ -33,7 +35,10 @@ import javax.swing.SpringLayout;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 import practica_09.ManejoDatos;
+import practica_09.ManipulaDatos;
+import practica_09.ModeloTablaMedidas;
 import practica_09.ModeloTablaPersona;
 
 /**
@@ -64,6 +69,7 @@ public class Prueba extends JFrame{
    // Elementos para el control de acciones
     private ManejoDatos manejoDatos;
     private ModeloTablaPersona modeloTablaPersona;
+    private ModeloTablaMedidas modeloTablaMedidas;
     private JTable tablaMedidas;
     private int idPerSel; // id de persona seleccionada
     private JLabel nombrePerSel; // Despliega el nombre de persona seleccioanda
@@ -91,6 +97,8 @@ public class Prueba extends JFrame{
     private JPanel formaCamposMediciones() {
         SpringLayout s = new SpringLayout();
         SpringLayout s2 = new SpringLayout();
+        SpringLayout s3 = new SpringLayout();
+        JPanel principal = new JPanel(new BorderLayout());
         JPanel p = new JPanel(s); // Principal
         JPanel p1 = new JPanel();
         JLabel etq = new JLabel("Manipulacion de datos de mediciones para :");
@@ -131,14 +139,18 @@ public class Prueba extends JFrame{
         p2.add(cadera);
         s2.putConstraint(SpringLayout.NORTH, cadera, 12, SpringLayout.SOUTH, cintura);
         s2.putConstraint(SpringLayout.WEST, cadera, 12, SpringLayout.EAST, etqCad);
-        //List<Object[]> ob = manejoDatos.conexionConsultaActividad("SELECT NOMBRE FROM CHEPE.TIPOACTIVIDAD");
-        String ob [] = {"Hola 1","Hola 2","Hola 3"};
-        JPanel p3 = new JPanel(new BorderLayout());
+        ///List<Object[]> ob = manejoDatos.conexionConsultaActividad("SELECT NOMBRE FROM CHEPE.TIPOACTIVIDAD");
+        String[] ob = {"x","y","z"};
+        JPanel p3 = new JPanel(s3);
         p3.setBorder(new TitledBorder("Selecciona la actividad"));
         actividad = new JComboBox(ob);
-        p3.add(actividad,BorderLayout.CENTER);
+        p3.add(actividad);
+        s3.putConstraint(SpringLayout.NORTH, actividad, 15, SpringLayout.NORTH, p3);
+        s3.putConstraint(SpringLayout.SOUTH, actividad, -15, SpringLayout.SOUTH, p3);
+        s3.putConstraint(SpringLayout.WEST, actividad, 15, SpringLayout.WEST, p3);
+        s3.putConstraint(SpringLayout.EAST, actividad, -15, SpringLayout.EAST, p3);
         JPanel p4 = new JPanel();
-        p4.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        p4.setBorder(BorderFactory.createTitledBorder(""));
         JLabel etqActividad = new JLabel("-----------------");
         p4.add(etqActividad);
         p.add(p1);
@@ -148,20 +160,45 @@ public class Prueba extends JFrame{
         p.add(p2);
         s.putConstraint(SpringLayout.NORTH, p2, 10, SpringLayout.SOUTH, p1);
         s.putConstraint(SpringLayout.WEST,p2, 0,SpringLayout.WEST,p);
+        s.putConstraint(SpringLayout.EAST,p2, -180,SpringLayout.EAST,p);
+        s.putConstraint(SpringLayout.SOUTH, p2, -10, SpringLayout.SOUTH, p);
         p.add(p3);
         s.putConstraint(SpringLayout.NORTH, p3, 10, SpringLayout.SOUTH, p1);
         s.putConstraint(SpringLayout.WEST,p3, 15,SpringLayout.EAST,p2);
         s.putConstraint(SpringLayout.EAST,p3, 0,SpringLayout.EAST,p);
+        s.putConstraint(SpringLayout.SOUTH, p3, -100, SpringLayout.SOUTH, p);
         p.add(p4);
         s.putConstraint(SpringLayout.NORTH, p4, 5, SpringLayout.SOUTH, p3);
         s.putConstraint(SpringLayout.WEST,p4, 15,SpringLayout.EAST,p2);
         s.putConstraint(SpringLayout.EAST,p4, 0,SpringLayout.EAST,p);
-        
+        s.putConstraint(SpringLayout.SOUTH, p4, -10, SpringLayout.SOUTH, p);
+        JPanel p_2 = new JPanel(new BorderLayout());
+        JPanel p_2_1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        insertaPer = new JButton("Agregar Registro");
+        limpiar = new JButton("Inicia valores");
+        eliminar = new JButton("Eliminar Reg. Seleccionado");
+        ManipulaDatos m = new ManipulaDatos();
+        modeloTablaMedidas = new ModeloTablaMedidas();
+        if(modeloTablaMedidas.getRowCount() != 0)
+        tablaMedidas = new JTable(modeloTablaMedidas);
+        else{
+        tablaMedidas = new JTable(1,1);
+        } 
+        p_2_1.add(insertaPer);
+        p_2_1.add(limpiar);
+        p_2_1.add(eliminar);
+        p_2.add(p_2_1,BorderLayout.NORTH);
+        p_2.add(tablaMedidas,BorderLayout.SOUTH);
+        principal.add(p,BorderLayout.CENTER);
+        principal.add(p_2,BorderLayout.SOUTH);
         return p;
     }
     
     private JPanel formarPanelResultados() {
-        //SpringLayout s = new SpringLayout();
+        manejoDatos = new ManejoDatos();
+        modeloTablaPersona = new ModeloTablaPersona();
+        //cargarDatosPersona();
+        tablaPersona = new JTable(modeloTablaPersona);
         JPanel p = new  JPanel(new BorderLayout());
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         insertaPer = new JButton("Agregar registro");

@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  * 
  * @author Garcia Garcia Jose Angel
  */
-class ModeloTablaMedidas extends AbstractTableModel{
+public class ModeloTablaMedidas extends AbstractTableModel{
     
     private List<Object[]> dato;
     private String encabezado[] = new String[]{
@@ -31,8 +31,12 @@ class ModeloTablaMedidas extends AbstractTableModel{
     
     @Override
     public int getRowCount() {
+        try{
         return dato.size();
-    }
+        }catch(Exception e){
+            return 0;
+            }
+     }
 
     @Override
     public int getColumnCount() {
