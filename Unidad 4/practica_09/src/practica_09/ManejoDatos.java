@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package practica_09;
 
 import java.io.File;
@@ -107,14 +101,15 @@ public class ManejoDatos {
 
     public boolean actualizaDatos(String SQL) {
         // Inserta actualiza o elimina
+        System.out.println(SQL);
         boolean res = false;
         try {
             java.sql.Statement st = conexion.createStatement();
             st.executeUpdate(SQL);
             res = true;
-            System.out.println("Se insertó");
+            System.out.println((SQL.contains("INSERT")) ? "Se insertó" : "Se eliminó");
         } catch (Exception e) {
-            System.err.println("Error al INSERTAR / ACTUALIZAR");
+            System.err.println("Error al INSERTAR / ACTUALIZAR\n " + e);
         }
         return res;
     }

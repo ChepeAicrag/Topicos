@@ -3,6 +3,7 @@ package practica_09;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.PopupMenu;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -58,7 +60,7 @@ public class ManipulaDatos extends JFrame{
     private boolean validaNombre = false; // Indicacion de validacion de su nombre
             
     public ManipulaDatos(){
-        setSize(500,400);
+        setSize(550,400);
         Container base = getContentPane();
         base.setLayout(new BorderLayout());
         JTabbedPane panelPrincipal = new JTabbedPane();
@@ -90,6 +92,8 @@ public class ManipulaDatos extends JFrame{
         panelPrincipal.setTitleAt(1, "Medidas");
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     private JPanel formarCamposPersona() {
@@ -100,7 +104,7 @@ public class ManipulaDatos extends JFrame{
         nombre = new JTextField(DA_NOMBRE,15);
         JLabel etqFecha = new JLabel("Fecha Nacimiento : ");
         Date today = new Date(Calendar.getInstance().getTimeInMillis());
-        JSpinner fechaNac = new JSpinner(new SpinnerDateModel(today, null, null, Calendar.MONTH));
+        fechaNac = new JSpinner(new SpinnerDateModel(today, null, null, Calendar.MONTH));
         JSpinner.DateEditor editor = new JSpinner.DateEditor(fechaNac, "dd/MM/yy        ");
         fechaNac.setEditor(editor);
         JLabel etqAños = new JLabel("Años: ");
@@ -142,9 +146,17 @@ public class ManipulaDatos extends JFrame{
         JPanel p = new  JPanel(new BorderLayout());
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         insertaPer = new JButton("Agregar registro");
+        insertaPer.setActionCommand("bInsertar");
+        insertaPer.addActionListener(new AdmoAccion());
         limpiar = new JButton("Inicia valores");
+        limpiar.setActionCommand("bLimpiar");
+        limpiar.addActionListener(new AdmoAccion());
         eliminar = new JButton("Eliminar Reg. Seleccionado");
+        eliminar.setActionCommand("bEliminar");
+        eliminar.addActionListener(new AdmoAccion());
         agregaMed = new JButton("Agregar Medidas");
+        agregaMed.setActionCommand("bAgregaMed");
+        agregaMed.addActionListener(new AdmoAccion());
         p1.add(insertaPer);
         p1.add(limpiar);
         p1.add(eliminar);
@@ -174,10 +186,13 @@ public class ManipulaDatos extends JFrame{
         cintura = new JTextField(3);
         JLabel etqCad = new JLabel("Cadera (cms):");
         cadera = new JTextField(3);
-        String[] ob = {"x","y","z"};
         JPanel p3 = new JPanel(s3);
         p3.setBorder(new TitledBorder("Selecciona la actividad"));
-        actividad = new JComboBox(ob);
+        List<Object[]> ob = manejoDatos.conexionConsultaActividad("SELECT * FROM CHEPE.TIPOACTIVIDAD");
+        String[] obJcom = new String[ob.size()];
+        for(int i = 0; i < obJcom.length; i++)
+            obJcom[i] = (String) ob.get(i)[1];
+        actividad = new JComboBox(obJcom);
         p2.add(etqEst);
         s2.putConstraint(SpringLayout.NORTH, etqEst, 12, SpringLayout.NORTH, p2);
         s2.putConstraint(SpringLayout.WEST, etqEst, 12, SpringLayout.WEST, p2);
@@ -218,7 +233,7 @@ public class ManipulaDatos extends JFrame{
         p.add(p2);
         s.putConstraint(SpringLayout.NORTH, p2, 10, SpringLayout.SOUTH, p1);
         s.putConstraint(SpringLayout.WEST,p2, 0,SpringLayout.WEST,p);
-        s.putConstraint(SpringLayout.EAST,p2, -180,SpringLayout.EAST,p);
+        s.putConstraint(SpringLayout.EAST,p2, -250,SpringLayout.EAST,p);
         s.putConstraint(SpringLayout.SOUTH, p2, -10, SpringLayout.SOUTH, p);
         p.add(p3);
         s.putConstraint(SpringLayout.NORTH, p3, 10, SpringLayout.SOUTH, p1);
@@ -239,7 +254,9 @@ public class ManipulaDatos extends JFrame{
         JPanel p_2 = new JPanel(new BorderLayout());
         JPanel p_2_1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         insertaPer = new JButton("Agregar Registro");
-        limpiar = new JButton("Inicia valores");
+        limpiaMed = new JButton("Inicia valores");
+        limpiaMed.setActionCommand("bLimpMed");
+        limpiaMed.addActionListener(new AdmoAccion());
         eliminar = new JButton("Eliminar Reg. Seleccionado");
         modeloTablaMedidas = new ModeloTablaMedidas();
         if(modeloTablaMedidas.getRowCount() != 0)
@@ -248,7 +265,7 @@ public class ManipulaDatos extends JFrame{
         tablaMedidas = new JTable(1,1);
         }
         p_2_1.add(insertaPer);
-        p_2_1.add(limpiar);
+        p_2_1.add(limpiaMed);
         p_2_1.add(eliminar);
         p_2.add(p_2_1,BorderLayout.NORTH);
         p_2.add(tablaMedidas,BorderLayout.SOUTH);
@@ -260,15 +277,16 @@ public class ManipulaDatos extends JFrame{
      // Clase usada para administracion de acciones 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            switch(ae.getActionCommand()){
+            String op = ae.getActionCommand(); 
+            switch(op){
                 case "bInsertar":
-                    if (validaNombre || nombre.getText() != "" && !nombre.getText().equals(DA_NOMBRE)) {
+                    if (!validaNombre || nombre.getText() != "" && !nombre.getText().equals(DA_NOMBRE)) {
                         SimpleDateFormat ff = new SimpleDateFormat("YYYY-MM-dd");
                         String vSexo = "";
                         if(hombre.isSelected())
-                            vSexo = hombre.getText();
+                            vSexo = "" + hombre.getText().charAt(0);
                         else
-                           vSexo = mujer.getText();
+                           vSexo = "" + mujer.getText().charAt(0);
                         String datos = "INSERT INTO CHEPE.PERSONA" + "(nombre,fechanac,sexo) values " + 
                                 "('" + nombre.getText() + "','" + ff.format(fechaNac.getValue()) + "','" + vSexo + "')";
                         manejoDatos.actualizaDatos(datos);
@@ -325,15 +343,20 @@ public class ManipulaDatos extends JFrame{
                     }
                     break;
                 case "bLimpiar":
+                    nombre.setText("");
+                    Date today = new Date(Calendar.getInstance().getTimeInMillis());
+                    fechaNac = new JSpinner(new SpinnerDateModel(today, null, null, Calendar.MONTH));
+                    JSpinner.DateEditor editor = new JSpinner.DateEditor(fechaNac, "dd/MM/yy        ");
+                    fechaNac.setEditor(editor);
+                    hombre.setSelected(false);
+                    mujer.setSelected(false);
+                    break;
+                case "bLimpMed":
                     peso.setText("");
                     estatura.setToolTipText("");
                     cadera.setText("");
                     cintura.setText("");
                     actividad.setToolTipText("");
-                    nombre.setText("");
-                    fechaNac.setToolTipText("");
-                    hombre.setSelected(false);
-                    mujer.setSelected(false);
                     break;
             }
         } 
