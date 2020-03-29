@@ -12,3 +12,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby
 Cargador de clases de base de datos iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Sun Mar 29 15:56:37 CST 2020: cerrando motor de Derby
+----------------------------------------------------------------
+Sun Mar 29 15:56:37 CST 2020:
+Cerrando la instancia a816c00e-0171-274c-4af3-ffff8fdc5828 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+----------------------------------------------------------------
