@@ -650,20 +650,17 @@ public class ManipulaDatos extends JFrame {
                     }
                     break;
                 case "bLimpiar":
-                    nombre.setText("");
-                    Date today = new Date(Calendar.getInstance().getTimeInMillis());
-                    fechaNac = new JSpinner(new SpinnerDateModel(today, null, null, Calendar.MONTH));
-                    JSpinner.DateEditor editor = new JSpinner.DateEditor(fechaNac, "dd/MM/yy        ");
-                    fechaNac.setEditor(editor);
+                    nombre.setText(DA_NOMBRE);
+                    fechaNac.setValue(new Date(99, 00, 01));
                     hombre.setSelected(false);
                     mujer.setSelected(false);
                     break;
                 case "bLimpMed":
                     peso.setText("");
-                    estatura.setToolTipText("");
+                    estatura.setValue(1.40);
                     cadera.setText("");
                     cintura.setText("");
-                    actividad.setToolTipText("");
+                    actividad.setSelectedIndex(0);
                     break;
             }
         }
