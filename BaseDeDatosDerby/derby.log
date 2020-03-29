@@ -1,7 +1,7 @@
-Fri Mar 27 11:37:39 CST 2020 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
+Sat Mar 28 12:00:50 CST 2020 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Fri Mar 27 11:37:39 CST 2020:
- Iniciando instancia a816c00e-0171-1d12-0d69-ffff8fdc5828 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
+Sat Mar 28 12:00:57 CST 2020:
+ Iniciando instancia a816c00e-0171-224d-a416-ffff8fdc5828 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
 Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_101/db/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -13,8 +13,8 @@ os.version=10.0
 derby.system.home=C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby
 Cargador de clases de base de datos iniciado - derby.database.classpath=''
 ----------------------------------------------------------------
-Fri Mar 27 14:55:38 CST 2020: cerrando motor de Derby
+Sat Mar 28 18:06:30 CST 2020: cerrando motor de Derby
 ----------------------------------------------------------------
-Fri Mar 27 14:55:38 CST 2020:
-Cerrando la instancia a816c00e-0171-1d12-0d69-ffff8fdc5828 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+Sat Mar 28 18:06:30 CST 2020:
+Cerrando la instancia a816c00e-0171-224d-a416-ffff8fdc5828 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
 ----------------------------------------------------------------

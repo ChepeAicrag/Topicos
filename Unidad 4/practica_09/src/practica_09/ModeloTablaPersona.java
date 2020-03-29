@@ -21,7 +21,8 @@ public class ModeloTablaPersona extends AbstractTableModel{
     private Class tipos[] = new Class[]{
             String.class,String.class,String.class,String.class};
     
-    public Class getComunClass(int c){
+    @Override
+    public Class getColumnClass(int c){
         return tipos[c];
     }
     
@@ -39,12 +40,13 @@ public class ModeloTablaPersona extends AbstractTableModel{
     public Object getValueAt(int r, int c) {
         return dato.get(r)[c];
     }
-    
-    public String getComunName(int col){
+    @Override
+    public String getColumnName(int col){
         return encabezado[col];
     }
     
     public void setDatos(List<Object[]> d){
+        d.add(0, encabezado);
         dato = d;
     }
 }

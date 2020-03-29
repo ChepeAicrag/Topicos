@@ -62,42 +62,64 @@ public class ManipulaDatos extends JFrame{
     private boolean validaNombre = false; // Indicacion de validacion de su nombre
             
     public ManipulaDatos(){
-        setSize(550,400);
+        setSize(560,400);
         Container base = getContentPane();
         base.setLayout(new BorderLayout());
-        JTabbedPane panelPrincipal = new JTabbedPane();
-        JPanel panelPersona = new JPanel(new BorderLayout());
-        JPanel panelMedidas = new JPanel(new BorderLayout());
-        JPanel datosN = new JPanel();
-        SpringLayout s = new SpringLayout();
-        JPanel datosC = new JPanel(s);
-        JLabel titulo = new JLabel("Manipulacion de datos de personas");
-        titulo.setHorizontalAlignment(SwingConstants.CENTER);
-        titulo.setFont(new Font("Serif", Font.BOLD, 18));
-        datosN.add(titulo);
-        titulo.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
-        JPanel fcp = formarCamposPersona();
-        datosC.add(fcp);
-        s.putConstraint(SpringLayout.NORTH, fcp, 12, SpringLayout.NORTH, datosC);
-        s.putConstraint(SpringLayout.WEST, fcp, 80, SpringLayout.WEST, datosC);
-        s.putConstraint(SpringLayout.SOUTH, fcp, -5, SpringLayout.SOUTH, datosC);
-        s.putConstraint(SpringLayout.EAST, fcp, -70, SpringLayout.EAST, datosC);
-        panelPersona.add(titulo,BorderLayout.NORTH);
-        panelPersona.add(datosC,BorderLayout.CENTER);
-        panelPersona.add(formarPanelResultados(),BorderLayout.SOUTH);
-        panelMedidas.add(formarCamposMedidas(),BorderLayout.CENTER);
-        panelMedidas.add(formarPanelMedidas(),BorderLayout.SOUTH);
-        base.add(panelPrincipal);
-        panelPrincipal.add(panelPersona);
-        panelPrincipal.add(panelMedidas);
-        panelPrincipal.setTitleAt(0, "Personas");
-        panelPrincipal.setTitleAt(1, "Medidas");
+        base.add(principal());
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
     }
 
+    private JTabbedPane principal(){
+        JTabbedPane panelPrincipal = new JTabbedPane();
+        SpringLayout sM = new SpringLayout();
+        SpringLayout s = new SpringLayout();
+        JPanel panelPersona = new JPanel(s);
+        JPanel panelMedidas = new JPanel(sM);
+        
+        //JPanel datosC = new JPanel(s);
+        JLabel titulo = new JLabel("Manipulacion de datos de personas");
+        titulo.setHorizontalAlignment(SwingConstants.CENTER);
+        titulo.setFont(new Font("Serif", Font.BOLD, 18));
+        titulo.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        panelPersona.add(titulo);
+        s.putConstraint(SpringLayout.NORTH, titulo, 0, SpringLayout.NORTH, panelPersona);
+        s.putConstraint(SpringLayout.WEST, titulo, 70, SpringLayout.WEST, panelPersona);
+        s.putConstraint(SpringLayout.EAST, titulo, -70, SpringLayout.EAST, panelPersona);
+        JPanel fcp = formarCamposPersona();
+        panelPersona.add(fcp);
+        s.putConstraint(SpringLayout.NORTH, fcp, 10, SpringLayout.SOUTH, titulo);
+        s.putConstraint(SpringLayout.WEST, fcp, 80, SpringLayout.WEST, panelPersona);
+        s.putConstraint(SpringLayout.SOUTH, fcp, -160, SpringLayout.SOUTH, panelPersona);
+        s.putConstraint(SpringLayout.EAST, fcp, -70, SpringLayout.EAST, panelPersona);
+        JPanel frP = formarPanelResultados();
+        panelPersona.add(frP);
+        s.putConstraint(SpringLayout.NORTH, frP, 8, SpringLayout.SOUTH, fcp);
+        s.putConstraint(SpringLayout.WEST, frP, 5, SpringLayout.WEST, panelPersona);
+        s.putConstraint(SpringLayout.SOUTH, frP, 0, SpringLayout.SOUTH, panelPersona);
+        s.putConstraint(SpringLayout.EAST, frP, -5, SpringLayout.EAST, panelPersona);
+        JPanel fCM = formarCamposMedidas();
+        JPanel fPM = formarPanelMedidas();
+        panelMedidas.add(fCM);
+        sM.putConstraint(SpringLayout.NORTH, fCM, 0, SpringLayout.NORTH, panelMedidas);
+        sM.putConstraint(SpringLayout.WEST, fCM, 0, SpringLayout.WEST, panelMedidas);
+        sM.putConstraint(SpringLayout.EAST, fCM, 0, SpringLayout.EAST, panelMedidas);
+        sM.putConstraint(SpringLayout.SOUTH, fCM, -150, SpringLayout.SOUTH, panelMedidas);
+        panelMedidas.add(fPM);
+        sM.putConstraint(SpringLayout.NORTH, fPM, 5, SpringLayout.SOUTH, fCM);
+        sM.putConstraint(SpringLayout.WEST, fPM, 0, SpringLayout.WEST, panelMedidas);
+        sM.putConstraint(SpringLayout.EAST, fPM, 0, SpringLayout.EAST, panelMedidas);
+        sM.putConstraint(SpringLayout.SOUTH, fPM, 0, SpringLayout.SOUTH, panelMedidas);
+        panelPrincipal.add(panelPersona);
+        panelPrincipal.add(panelMedidas);
+        panelPrincipal.setTitleAt(0, "Personas");
+        panelPrincipal.setTitleAt(1, "Medidas");
+        return panelPrincipal;
+    }
+    
+    
     private JPanel formarCamposPersona() {
         SpringLayout s = new SpringLayout();
         JPanel p = new  JPanel(s);
@@ -110,7 +132,7 @@ public class ManipulaDatos extends JFrame{
         fechaNac = new JSpinner(sp);
         JSpinner.DateEditor editor = new JSpinner.DateEditor(fechaNac, "dd/MM/yy  ");
         fechaNac.setEditor(editor);
-        JLabel etqAños = new JLabel("Años: ");
+        JLabel etqAños = new JLabel("Años: " + 20);
         fechaNac.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent ce) {
@@ -138,7 +160,7 @@ public class ManipulaDatos extends JFrame{
         s.putConstraint(SpringLayout.WEST, etqName, 12, SpringLayout.WEST, p);
         p.add(nombre);
         s.putConstraint(SpringLayout.NORTH, nombre, 12, SpringLayout.NORTH, p);
-        s.putConstraint(SpringLayout.WEST, nombre, 12, SpringLayout.EAST, etqName);
+        s.putConstraint(SpringLayout.WEST, nombre, 75, SpringLayout.EAST, etqName);
         p.add(etqFecha);
         s.putConstraint(SpringLayout.NORTH, etqFecha, 12, SpringLayout.SOUTH, etqName);
         s.putConstraint(SpringLayout.WEST, etqFecha, 12, SpringLayout.WEST, p);
@@ -160,31 +182,41 @@ public class ManipulaDatos extends JFrame{
         return p;
     }
 
-    private Component formarPanelResultados() {
+    private JPanel formarPanelResultados() {
         manejoDatos = new ManejoDatos();
         modeloTablaPersona = new ModeloTablaPersona();
         cargarDatosPersona();
         tablaPersona = new JTable(modeloTablaPersona);
-        JPanel p = new  JPanel(new BorderLayout());
-        JPanel p1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        SpringLayout s = new SpringLayout();
+        JPanel p = new  JPanel(s);
+        JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT,5, 0));
+        AdmoAccion action = new AdmoAccion();
         insertaPer = new JButton("Agregar registro");
         insertaPer.setActionCommand("bInsertar");
-        insertaPer.addActionListener(new AdmoAccion());
+        insertaPer.addActionListener(action);
         limpiar = new JButton("Inicia valores");
         limpiar.setActionCommand("bLimpiar");
-        limpiar.addActionListener(new AdmoAccion());
-        eliminar = new JButton("Eliminar Reg. Seleccionado");
+        limpiar.addActionListener(action);
+        eliminar = new JButton("Eliminar Reg. Sel.");
         eliminar.setActionCommand("bEliminar");
-        eliminar.addActionListener(new AdmoAccion());
+        eliminar.addActionListener(action);
         agregaMed = new JButton("Agregar Medidas");
         agregaMed.setActionCommand("bAgregaMed");
-        agregaMed.addActionListener(new AdmoAccion());
+        agregaMed.addActionListener(action);
         p1.add(insertaPer);
         p1.add(limpiar);
         p1.add(eliminar);
         p1.add(agregaMed);
         p.add(p1,BorderLayout.NORTH);
-        p.add(tablaPersona,BorderLayout.SOUTH);
+        s.putConstraint(SpringLayout.NORTH, p1, 0, SpringLayout.NORTH, p);
+        s.putConstraint(SpringLayout.WEST, p1, 5, SpringLayout.WEST, p);
+        s.putConstraint(SpringLayout.EAST, p1, -5, SpringLayout.EAST, p);
+        p.add(tablaPersona);
+        s.putConstraint(SpringLayout.NORTH, tablaPersona, 5, SpringLayout.SOUTH, p1);
+        s.putConstraint(SpringLayout.WEST, tablaPersona, 5, SpringLayout.WEST, p);
+        s.putConstraint(SpringLayout.EAST, tablaPersona, -5, SpringLayout.EAST, p);
+        s.putConstraint(SpringLayout.SOUTH, tablaPersona, 0, SpringLayout.SOUTH, p);
+       
         return p;
     }
 
@@ -193,9 +225,9 @@ public class ManipulaDatos extends JFrame{
         SpringLayout s2 = new SpringLayout();
         SpringLayout s3 = new SpringLayout();
         JPanel p = new JPanel(s); // Principal
-        JPanel p1 = new JPanel();
-        JLabel etq = new JLabel("Manipulacion de datos de mediciones para :");
-        nombrePerSel = new JLabel("xd");
+        JPanel p1 = new JPanel(new BorderLayout());
+        JLabel etq = new JLabel(String.format("%95s","Manipulacion de datos de mediciones para :"));
+        nombrePerSel = new JLabel(String.format("%90s",""));
         p1.add(etq,BorderLayout.NORTH);
         p1.add(nombrePerSel,BorderLayout.SOUTH);
         JPanel p2 = new JPanel(s2);
@@ -212,21 +244,24 @@ public class ManipulaDatos extends JFrame{
         p3.setBorder(new TitledBorder("Selecciona la actividad"));
         List<Object[]> ob = manejoDatos.conexionConsultaActividad("SELECT * FROM CHEPE.TIPOACTIVIDAD");
         String[] obJcom = new String[ob.size()];
-        for(int i = 0; i < obJcom.length; i++)
+        String[] desActi = new String[ob.size()];
+        for(int i = 0; i < ob.size(); i++){
             obJcom[i] = (String) ob.get(i)[1];
+            desActi[i] = (String) ob.get(i)[2];
+        }
         actividad = new JComboBox(obJcom);
         p2.add(etqEst);
         s2.putConstraint(SpringLayout.NORTH, etqEst, 12, SpringLayout.NORTH, p2);
         s2.putConstraint(SpringLayout.WEST, etqEst, 12, SpringLayout.WEST, p2);
         p2.add(estatura);
-        s2.putConstraint(SpringLayout.NORTH, estatura, 12, SpringLayout.NORTH, p2);
-        s2.putConstraint(SpringLayout.WEST, estatura, 12, SpringLayout.EAST, etqEst);
+        s2.putConstraint(SpringLayout.NORTH, estatura, 10, SpringLayout.NORTH, p2);
+        s2.putConstraint(SpringLayout.WEST, estatura, 8, SpringLayout.EAST, etqEst);
         p2.add(etqPeso);
         s2.putConstraint(SpringLayout.NORTH, etqPeso, 12, SpringLayout.SOUTH, etqEst);
         s2.putConstraint(SpringLayout.WEST, etqPeso, 12, SpringLayout.WEST, p2);
         p2.add(peso);
-        s2.putConstraint(SpringLayout.NORTH, peso, 8, SpringLayout.SOUTH, estatura);
-        s2.putConstraint(SpringLayout.WEST, peso, 12, SpringLayout.EAST, etqPeso);
+        s2.putConstraint(SpringLayout.NORTH, peso, 7, SpringLayout.SOUTH, estatura);
+        s2.putConstraint(SpringLayout.WEST, peso, 28, SpringLayout.EAST, etqPeso);
         p2.add(etqCin);
         s2.putConstraint(SpringLayout.NORTH, etqCin, 12, SpringLayout.SOUTH, etqPeso);
         s2.putConstraint(SpringLayout.WEST, etqCin, 12, SpringLayout.WEST, p2);
@@ -240,33 +275,40 @@ public class ManipulaDatos extends JFrame{
         s2.putConstraint(SpringLayout.NORTH, cadera, 9, SpringLayout.SOUTH, cintura);
         s2.putConstraint(SpringLayout.WEST, cadera, 12, SpringLayout.EAST, etqCad);
         p3.add(actividad);
-        s3.putConstraint(SpringLayout.NORTH, actividad, 15, SpringLayout.NORTH, p3);
-        s3.putConstraint(SpringLayout.SOUTH, actividad, -80, SpringLayout.SOUTH, p3);
+        s3.putConstraint(SpringLayout.NORTH, actividad, 5, SpringLayout.NORTH, p3);
+        s3.putConstraint(SpringLayout.SOUTH, actividad, -15, SpringLayout.SOUTH, p3);
         s3.putConstraint(SpringLayout.WEST, actividad, 15, SpringLayout.WEST, p3);
-        s3.putConstraint(SpringLayout.EAST, actividad, -15, SpringLayout.EAST, p3);
-        JPanel p4 = new JPanel();
+        s3.putConstraint(SpringLayout.EAST, actividad, -10, SpringLayout.EAST, p3);
+        JPanel p4 = new JPanel(new BorderLayout());
         p4.setBorder(BorderFactory.createTitledBorder(""));
-        JLabel etqActividad = new JLabel("-----------------");
-        p4.add(etqActividad);
+        JLabel etqActividad = new JLabel(desActi[0]);
+        actividad.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                int pos = actividad.getSelectedIndex();
+                etqActividad.setText(desActi[pos]);
+            }
+        });
+        p4.add(etqActividad,BorderLayout.NORTH);
         p.add(p1);
-        s.putConstraint(SpringLayout.NORTH, p1, 12, SpringLayout.NORTH, p);
+        s.putConstraint(SpringLayout.NORTH, p1, 0, SpringLayout.NORTH, p);
         s.putConstraint(SpringLayout.WEST,p1, 0,SpringLayout.WEST,p);
         s.putConstraint(SpringLayout.EAST,p1, 0,SpringLayout.EAST,p);
         p.add(p2);
         s.putConstraint(SpringLayout.NORTH, p2, 10, SpringLayout.SOUTH, p1);
-        s.putConstraint(SpringLayout.WEST,p2, 0,SpringLayout.WEST,p);
-        s.putConstraint(SpringLayout.EAST,p2, -250,SpringLayout.EAST,p);
-        s.putConstraint(SpringLayout.SOUTH, p2, -10, SpringLayout.SOUTH, p);
+        s.putConstraint(SpringLayout.WEST,p2, 30,SpringLayout.WEST,p);
+        s.putConstraint(SpringLayout.EAST,p2, -340,SpringLayout.EAST,p);
+        s.putConstraint(SpringLayout.SOUTH, p2, 0, SpringLayout.SOUTH, p);
         p.add(p3);
         s.putConstraint(SpringLayout.NORTH, p3, 10, SpringLayout.SOUTH, p1);
         s.putConstraint(SpringLayout.WEST,p3, 15,SpringLayout.EAST,p2);
         s.putConstraint(SpringLayout.EAST,p3, 0,SpringLayout.EAST,p);
-        s.putConstraint(SpringLayout.SOUTH, p3, -100, SpringLayout.SOUTH, p);
+        s.putConstraint(SpringLayout.SOUTH, p3, -90, SpringLayout.SOUTH, p);
         p.add(p4);
-        s.putConstraint(SpringLayout.NORTH, p4, 5, SpringLayout.SOUTH, p3);
+        s.putConstraint(SpringLayout.NORTH, p4, 1, SpringLayout.SOUTH, p3);
         s.putConstraint(SpringLayout.WEST,p4, 15,SpringLayout.EAST,p2);
         s.putConstraint(SpringLayout.EAST,p4, 0,SpringLayout.EAST,p);
-        s.putConstraint(SpringLayout.SOUTH, p4, -10, SpringLayout.SOUTH, p);
+        s.putConstraint(SpringLayout.SOUTH, p4, 0, SpringLayout.SOUTH, p);
         
         return p;
     }
@@ -275,20 +317,20 @@ public class ManipulaDatos extends JFrame{
         JPanel principal = new JPanel();
         JPanel p_2 = new JPanel(new BorderLayout());
         JPanel p_2_1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
-        insertaPer = new JButton("Agregar Registro");
+        insertaMed = new JButton("Agregar Registro");
+        insertaMed.setActionCommand("bInsertarMed");
+        insertaMed.addActionListener(new AdmoAccion());
         limpiaMed = new JButton("Inicia valores");
         limpiaMed.setActionCommand("bLimpMed");
         limpiaMed.addActionListener(new AdmoAccion());
-        eliminar = new JButton("Eliminar Reg. Seleccionado");
+        eliminaMed = new JButton("Eliminar Reg. Seleccionado");
+        eliminaMed.setActionCommand("bEliminarMed");
+        eliminaMed.addActionListener(new AdmoAccion());
         modeloTablaMedidas = new ModeloTablaMedidas();
-        if(modeloTablaMedidas.getRowCount() != 0)
         tablaMedidas = new JTable(modeloTablaMedidas);
-        else{
-        tablaMedidas = new JTable(1,1);
-        }
-        p_2_1.add(insertaPer);
+        p_2_1.add(insertaMed);
         p_2_1.add(limpiaMed);
-        p_2_1.add(eliminar);
+        p_2_1.add(eliminaMed);
         p_2.add(p_2_1,BorderLayout.NORTH);
         p_2.add(tablaMedidas,BorderLayout.SOUTH);
         return p_2;
@@ -310,7 +352,7 @@ public class ManipulaDatos extends JFrame{
                         else
                            vSexo = "" + mujer.getText().charAt(0);
                         String datos = "INSERT INTO CHEPE.PERSONA" + "(nombre,fechanac,sexo) values " + 
-                                "('" + nombre.getText() + "','" + ff.format(fechaNac.getValue()) + "','" + vSexo + "')";
+                                "('" + nombre.getText() + "','" + ff.format(fechaNac.getValue())+ "','" + vSexo + "')";
                         manejoDatos.actualizaDatos(datos);
                         cargarDatosPersona();
                         tablaPersona.updateUI();
@@ -330,37 +372,57 @@ public class ManipulaDatos extends JFrame{
                         tablaPersona.updateUI();
                     }else
                         tablaPersona.clearSelection();
-                }
-                    break;
-                case "bAgregaMed":
+                }  break;
+                
+                
+                case "bEliminarMed":
+                    de = "";
                     rs = tablaPersona.getSelectedRow();
                     if(rs > 0){
+                    idPerSel = Integer.parseInt((String) tablaPersona.getValueAt(rs, 0));
+                    nombrePer = (String) tablaPersona.getValueAt(rs, 1);
+                    int idMed = Integer.parseInt((String) tablaMedidas.getValueAt(tablaMedidas.getSelectedRow(), 0));
+                    int confirmado = JOptionPane.showConfirmDialog(null, "Eliminas el registro de" + nombrePer + "?");
+                    if(confirmado == JOptionPane.OK_OPTION){
+                        de = "DELETE FROM CHEPE.MEDICIONES WHERE IDMEDIDAS="+idMed;
+                        manejoDatos.actualizaDatos(de);
+                        cargarDatosMedidas(idPerSel);
+                        tablaMedidas.updateUI();
+                    }else
+                        tablaMedidas.updateUI();
+                }  break;
+                
+                
+                case "bAgregaMed":
+                    rs = tablaPersona.getSelectedRow();
+                    System.out.println("xd" + rs);
+                    if(rs > 0){
                         idPerSel = Integer.parseInt((String) tablaPersona.getValueAt(rs, 0));
-                        String seleccionMedPer = "SELECT FROM CHEPE.MEDICIONES WHERE IDPERSONA=" + idPerSel;
+                        String seleccionMedPer = "SELECT * FROM CHEPE.MEDICIONES WHERE IDPERSONA=" + idPerSel;
                         modeloTablaMedidas.setDatos(manejoDatos.conexionConsultaMediciones(seleccionMedPer));
                         tablaMedidas.updateUI();
                         String nps = (String) modeloTablaPersona.getValueAt(rs, 1);
-                        nombrePerSel.setText("----- " + nps + "-----");
+                        nombrePerSel.setText(String.format("%90s","----- " + nps + "-----"));
                     }
                     break;
                 case "bInsertarMed":
                     if(tablaPersona.getSelectedRow() > 0){
                         Calendar fecha = Calendar.getInstance();
                         SimpleDateFormat ff = new SimpleDateFormat("YYYY-MM-dd");
-                        Long estauraL = ((Double)estatura.getValue()).longValue() * 100;
-                        int idAct = actividad.getSelectedIndex();
-                        if(peso.getText() != "" && cintura.getText() != "" && cadera.getText() != ""){
-                            Integer pesoE = Integer.parseInt(peso.getText());
-                            Integer cinturaE = Integer.parseInt(cintura.getText());
-                            Integer caderaE = Integer.parseInt(cadera.getText());
+                        Long estauraL = ((Double) estatura.getValue()).longValue() * 100 ;
+                        int idAct = actividad.getSelectedIndex() + 1;
+                        if(!peso.getText().isEmpty() && !cintura.getText().isEmpty() && !cadera.getText().isEmpty()){
+                            double pesoE = Double.parseDouble(peso.getText());
+                            int cinturaE = Integer.parseInt(cintura.getText());
+                            int caderaE = Integer.parseInt(cadera.getText());
                             System.out.println("Insercion de " + idPerSel + " Estatura " +estauraL);
                             String medidas = "INSERT INTO CHEPE.MEDICIONES" 
                                     + "(fecha,estatura,peso,cintura,cadera,idtipoact,idpersona) values('" 
-                                    + fecha + "','" + estauraL + "','" + pesoE + "','" + cinturaE + "','" + caderaE +
-                                    "','" + idAct + "','" + idPerSel + "')";
+                                    + ff.format(fecha.getTime()) + "'," +estauraL + "," + pesoE + "," + cinturaE + "," + caderaE +
+                                    "," + idAct + "," + idPerSel + ")";
                             manejoDatos.actualizaDatos(medidas);
                             cargarDatosMedidas(idPerSel);
-                            tablaPersona.updateUI();
+                            tablaMedidas.updateUI();
                         }
                     }
                     break;
@@ -390,7 +452,7 @@ public class ManipulaDatos extends JFrame{
     }
     
     public void cargarDatosMedidas(int idPers){
-        String consultaMedidas = "SELECT FROM CHEPE.MEDICIONES WHERE IDPERSONA=" + idPers;
+        String consultaMedidas = "SELECT * FROM CHEPE.MEDICIONES WHERE IDPERSONA=" + idPers;
         modeloTablaMedidas.setDatos(manejoDatos.conexionConsultaMediciones(consultaMedidas));
     }
 }

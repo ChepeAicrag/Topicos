@@ -85,12 +85,13 @@ public class ManejoDatos {
             while (rs.next()) {
                 // Estructura del registro activiad
                 String [] dat = new String[CAMPOS_MEDICIONES];
-                dat[0] = fecha.format((Date) rs.getDate(2));
-                dat[1] = String.valueOf((Integer) rs.getInt(3));
-                dat[2] =  String.valueOf((Integer) rs.getInt(4));
-                dat[3] = String.valueOf((Integer) rs.getInt(5));
-                dat[4] = String.valueOf((Integer) rs.getInt(6));
-                dat[5] = String.valueOf((Integer) rs.getInt(7));
+                dat[0] = String.valueOf((Integer)rs.getInt(1));
+                dat[1] = fecha.format((Date) rs.getDate(2));
+                dat[2] = String.valueOf((Integer) rs.getInt(3));
+                dat[3] =  String.valueOf((Double) rs.getDouble(4));
+                dat[4] = String.valueOf((Integer) rs.getInt(5));
+                dat[5] = String.valueOf((Integer) rs.getInt(6));
+                dat[6] = String.valueOf((Integer) rs.getInt(7));
                 datos.add(dat);
             }
         } catch (Exception e) {

@@ -8,6 +8,7 @@ package practica_09;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * 
@@ -17,15 +18,18 @@ public class ModeloTablaMedidas extends AbstractTableModel{
     
     private List<Object[]> dato;
     private String encabezado[] = new String[]{
-            "No.Iden","Nombre","Fecha Nac.","Sexo"};
+            "idMed","Fecha","Estaura(cms)","Peso(kg)","Cintura(cm)","Cadera(cm)","Tipo act"};
     private Class tipos[] = new Class[]{
-            String.class,String.class,String.class,String.class};
+            String.class,String.class,String.class,String.class,String.class,String.class,String.class};
+    
     
     public void setDatos(List<Object[]> d) {
+        d.add(0, encabezado);
         dato = d;
     }
 
-    public Class getComunClass(int c){
+    @Override
+    public Class getColumnClass(int c){
         return tipos[c];
     }
     
@@ -35,20 +39,20 @@ public class ModeloTablaMedidas extends AbstractTableModel{
         return dato.size();
         }catch(Exception e){
             return 0;
-            }
-     }
+        }
+    }
 
     @Override
     public int getColumnCount() {
-        return tipos.length;
+        return encabezado.length;
     }
 
     @Override
     public Object getValueAt(int r, int c) {
         return dato.get(r)[c];
     }
-    
-    public String getComunName(int col){
+    @Override
+    public String getColumnName(int col){
         return encabezado[col];
     }
     
