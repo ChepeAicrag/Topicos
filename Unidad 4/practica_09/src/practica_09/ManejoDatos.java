@@ -106,7 +106,7 @@ public class ManejoDatos {
             res = true;
             System.out.println((SQL.contains("INSERT")) ? "Se insertó" : "Se eliminó");
         } catch (Exception e) {
-            System.err.println("Error al INSERTAR / ACTUALIZAR\n " + e);
+            System.err.println("Error al INSERTAR / ACTUALIZAR\n ");
         }
         return res;
     }
