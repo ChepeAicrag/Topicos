@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package practica_09;
 
 import java.util.List;
@@ -11,7 +5,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Garcia Garcia Jose Angel
  */
 public class ModeloTablaPersona extends AbstractTableModel{
 
@@ -46,7 +40,6 @@ public class ModeloTablaPersona extends AbstractTableModel{
     }
     
     public void setDatos(List<Object[]> d){
-        d.add(0, encabezado);
         dato = d;
     }
 }

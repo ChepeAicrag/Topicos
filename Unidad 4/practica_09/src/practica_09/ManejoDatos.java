@@ -1,7 +1,5 @@
 package practica_09;
 
-import java.io.File;
-import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -9,9 +7,7 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import static sun.java2d.cmm.ColorTransform.In;
 
 /**
  * 

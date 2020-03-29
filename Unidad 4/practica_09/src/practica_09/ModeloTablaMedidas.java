@@ -18,13 +18,12 @@ public class ModeloTablaMedidas extends AbstractTableModel{
     
     private List<Object[]> dato;
     private String encabezado[] = new String[]{
-            "idMed","Fecha","Estaura(cms)","Peso(kg)","Cintura(cm)","Cadera(cm)","Tipo act"};
+            "IdMed","Fecha","Estaura(cms)","Peso(kg)","Cintura(cm)","Cadera(cm)","Tipo act"};
     private Class tipos[] = new Class[]{
             String.class,String.class,String.class,String.class,String.class,String.class,String.class};
     
     
     public void setDatos(List<Object[]> d) {
-        d.add(0, encabezado);
         dato = d;
     }
 
