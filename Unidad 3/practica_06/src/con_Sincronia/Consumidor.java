@@ -3,31 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package con_Sincronia;
 
 /**
- * 
+ * @author Sanchez Lopez Laura Yessenia
  * @author García García José Ángel
  */
-public class Consumidor implements Runnable{
+public class Consumidor implements Runnable {
+
     private Pila pila;
     private static int numCons = 0;
-    
-    public Consumidor(Pila p){
+    private int numC;
+
+    public Consumidor(Pila p) {
         pila = p;
-        numCons++;
+        numC = ++numCons;
     }
-    
+
     @Override
     public void run() {
         char c;
         for (int i = 0; i < 20; i++) {
             c = pila.quitar();
-                System.out.println("Hilo: " + Thread.currentThread().getName() + " Consumidor " + numCons + " : " + c);
+            System.out.println("Hilo: " + Thread.currentThread().getName() + " Consumidor " + numC + " : " + c);
             try {
-                Thread.sleep((int)(Math.random() * 777));
-            } catch (Exception e) {}
+                Thread.sleep((int) (Math.random() * 777));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

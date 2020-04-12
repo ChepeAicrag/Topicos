@@ -7,7 +7,7 @@
 package con_Sincronia;
 
 /**
- * 
+ * @author Sanchez Lopez Laura Yessenia
  * @author García García José Ángel
  */
 public class Pila {
@@ -34,7 +34,9 @@ public class Pila {
         while(llena())
             try {
                 this.wait();
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException e) {
+                System.out.println("Error al poner");
+            }
         tope++;
         datos[tope] = c;
         this.notify();
@@ -47,7 +49,9 @@ public class Pila {
         while (vacia())                 
               try {
                    this.wait();
-                } catch (InterruptedException e) {}
+                } catch (InterruptedException e) {
+                    System.out.println("Error al quitar xd");
+                }
         d = datos[tope];
         tope--;
         this.notify();
@@ -57,5 +61,4 @@ public class Pila {
     public char ver(){
         return !vacia() ? datos[tope] : ' ';
     }
-
 }

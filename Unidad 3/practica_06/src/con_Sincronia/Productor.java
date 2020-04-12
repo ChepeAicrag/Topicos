@@ -3,32 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package con_Sincronia;
 
 /**
- * 
+ * @author Sanchez Lopez Laura Yessenia
  * @author García García José Ángel
  */
-public class Productor implements Runnable{
+public class Productor implements Runnable {
+
     private Pila pila;
     private static int numProd = 0;
-    
-    public Productor(Pila p){
+    private int numP;
+
+    public Productor(Pila p) {
         pila = p;
-        numProd++;
+        numP = ++numProd;
     }
-    
+
     @Override
     public void run() {
         char c;
         for (int i = 0; i < 20; i++) {
-            c = (char)(Math.random() * 26  + 65);
+            c = (char) (Math.random() * 26 + 65);
             pila.poner(c);
-            System.out.println(" Productor " + numProd + " agregó " + c + " en hilo " + Thread.currentThread().getName());
+            System.out.println(" Productor " + numP + " agregó " + c + " en hilo " + Thread.currentThread().getName());
             try {
-                Thread.sleep((int)(Math.random() * 777));
-            } catch (Exception e) {}
+                Thread.sleep((int) (Math.random() * 777));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

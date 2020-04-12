@@ -13,10 +13,11 @@ package sin_Sincronia;
 public class Consumidor implements Runnable{
     private PilaS pila;
     private static int numCons = 0;
+    private int numC;
     
     public Consumidor(PilaS p){
         pila = p;
-        numCons++;
+        numC = ++numCons;
     }
     
     @Override
@@ -25,7 +26,7 @@ public class Consumidor implements Runnable{
         for (int i = 0; i < 20; i++) {
             c = pila.quitar();
             if (Character.isAlphabetic(c)) {
-                System.out.println("Hilo: " + Thread.currentThread().getName() + " Consumidor " + numCons + " : " + c);
+                System.out.println("Hilo: " + Thread.currentThread().getName() + " Consumidor " + numC + " : " + c);
             }
             try {
                 Thread.sleep((int)(Math.random() * 777));

@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 
+ * @author Sanchez Lopez Laura Yessenia
  * @author García García José Ángel
  */
 public class PruebaExecutorService {
