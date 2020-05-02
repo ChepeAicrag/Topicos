@@ -1,7 +1,7 @@
-Mon Apr 13 14:19:39 CDT 2020 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
+Tue Apr 14 18:26:07 CDT 2020 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Mon Apr 13 14:19:39 CDT 2020:
- Iniciando instancia a816c00e-0171-74fb-8d0a-ffff8fdc5828 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
+Tue Apr 14 18:26:07 CDT 2020:
+ Iniciando instancia a816c00e-0171-7b03-8e9d-ffff8fdc5828 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
 Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_101/db/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,58 +12,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby
 Cargador de clases de base de datos iniciado - derby.database.classpath=''
-Mon Apr 13 14:19:40 CDT 2020 Thread[DRDAConnThread_2,5,main] (XID = 10288), (SESSIONID = 0), (DATABASE = mediciones_personas), (DRDAID = {1}), Cleanup action starting
-java.sql.SQLNonTransientConnectionException: Se ha producido un fallo de autenticación de conexión. Motivo: Autenticación no válida..
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
-	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Caused by: ERROR 08004: Se ha producido un fallo de autenticación de conexión. Motivo: Autenticación no válida..
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	... 18 more
-============= begin nested exception, level (1) ===========
-ERROR 08004: Se ha producido un fallo de autenticación de conexión. Motivo: Autenticación no válida..
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
-	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-============= end nested exception, level (1) ===========
-Cleanup action completed
-Mon Apr 13 14:19:40 CDT 2020 Thread[DRDAConnThread_2,5,main] (DATABASE = mediciones_personas), (DRDAID = {1}), Se ha producido un fallo de autenticación de conexión. Motivo: Autenticación no válida..
 ----------------------------------------------------------------
-Mon Apr 13 14:51:08 CDT 2020: cerrando motor de Derby
+Tue Apr 14 18:58:55 CDT 2020: cerrando motor de Derby
 ----------------------------------------------------------------
-Mon Apr 13 14:51:08 CDT 2020:
-Cerrando la instancia a816c00e-0171-74fb-8d0a-ffff8fdc5828 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+Tue Apr 14 18:58:55 CDT 2020:
+Cerrando la instancia a816c00e-0171-7b03-8e9d-ffff8fdc5828 en el directorio de base de datos C:\Users\lucy_\Documents\GitHub\Topicos\BaseDeDatosDerby\mediciones_personas con cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
 ----------------------------------------------------------------
